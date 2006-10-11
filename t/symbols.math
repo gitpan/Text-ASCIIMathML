@@ -1,0 +1,188 @@
+? int
+<math title="int">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&int;</mo>
+  </mstyle>
+</math>
+
+? oint
+<math title="oint">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&ContourIntegral;</mo>
+  </mstyle>
+</math>
+
+? del
+<math title="del">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&part;</mo>
+  </mstyle>
+</math>
+
+? grad
+<math title="grad">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&nabla;</mo>
+  </mstyle>
+</math>
+
+? +-
+<math title="+-">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&plusmn;</mo>
+  </mstyle>
+</math>
+
+? O/
+<math title="O/">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&empty;</mo>
+  </mstyle>
+</math>
+
+? oo
+<math title="oo">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&infin;</mo>
+  </mstyle>
+</math>
+
+? aleph
+<math title="aleph">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&alefsym;</mo>
+  </mstyle>
+</math>
+
+? /_
+<math title="/_">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&ang;</mo>
+  </mstyle>
+</math>
+
+? :.
+<math title=":.">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&there4;</mo>
+  </mstyle>
+</math>
+
+? ...
+<math title="...">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>...</mo>
+  </mstyle>
+</math>
+
+? cdots
+<math title="cdots">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&ctdot;</mo>
+  </mstyle>
+</math>
+
+? vdots
+<math title="vdots">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&vellip;</mo>
+  </mstyle>
+</math>
+
+? ddots
+<math title="ddots">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&dtdot;</mo>
+  </mstyle>
+</math>
+
+? \ 
+<math title="\ ">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&nbsp;</mo>
+  </mstyle>
+</math>
+
+? quad
+<math title="quad">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&nbsp;&nbsp;</mo>
+  </mstyle>
+</math>
+
+? diamond
+<math title="diamond">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Diamond;</mo>
+  </mstyle>
+</math>
+
+? square
+<math title="square">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Square;</mo>
+  </mstyle>
+</math>
+
+? |__
+<math title="|__">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&lfloor;</mo>
+  </mstyle>
+</math>
+
+? __|
+<math title="__|">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&rfloor;</mo>
+  </mstyle>
+</math>
+
+? |~
+<math title="|~">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&lceil;</mo>
+  </mstyle>
+</math>
+
+? ~|
+<math title="~|">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&rceil;</mo>
+  </mstyle>
+</math>
+
+? CC
+<math title="CC">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Copf;</mo>
+  </mstyle>
+</math>
+
+? NN
+<math title="NN">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Nopf;</mo>
+  </mstyle>
+</math>
+
+? QQ
+<math title="QQ">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Qopf;</mo>
+  </mstyle>
+</math>
+
+? RR
+<math title="RR">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Ropf;</mo>
+  </mstyle>
+</math>
+
+? ZZ
+<math title="ZZ">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Zopf;</mo>
+  </mstyle>
+</math>

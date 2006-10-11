@@ -1,0 +1,69 @@
+? uarr
+<math title="uarr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&uarr;</mo>
+  </mstyle>
+</math>
+
+? darr
+<math title="darr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&darr;</mo>
+  </mstyle>
+</math>
+
+? rarr
+<math title="rarr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&rarr;</mo>
+  </mstyle>
+</math>
+
+? ->
+<math title="-&gt;">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&rarr;</mo>
+  </mstyle>
+</math>
+
+? |->
+<math title="|-&gt;">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&RightTeeArrow;</mo>
+  </mstyle>
+</math>
+
+? larr
+<math title="larr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&larr;</mo>
+  </mstyle>
+</math>
+
+? harr
+<math title="harr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&harr;</mo>
+  </mstyle>
+</math>
+
+? rArr
+<math title="rArr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&rArr;</mo>
+  </mstyle>
+</math>
+
+? lArr
+<math title="lArr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&lArr;</mo>
+  </mstyle>
+</math>
+
+? hArr
+<math title="hArr">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&hArr;</mo>
+  </mstyle>
+</math>

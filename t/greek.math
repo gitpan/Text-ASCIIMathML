@@ -1,0 +1,252 @@
+? alpha
+<math title="alpha">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&alpha;</mi>
+  </mstyle>
+</math>
+
+? beta
+<math title="beta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&beta;</mi>
+  </mstyle>
+</math>
+
+? chi
+<math title="chi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&chi;</mi>
+  </mstyle>
+</math>
+
+? delta
+<math title="delta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&delta;</mi>
+  </mstyle>
+</math>
+
+? Delta
+<math title="Delta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Delta;</mo>
+  </mstyle>
+</math>
+
+? epsilon
+<math title="epsilon">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&epsilon;</mi>
+  </mstyle>
+</math>
+
+? varepsilon
+<math title="varepsilon">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mi>&varepsilon;</mi>
+    <mi>&#x025B;</mi>
+  </mstyle>
+</math>
+
+? eta
+<math title="eta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&eta;</mi>
+  </mstyle>
+</math>
+
+? gamma
+<math title="gamma">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&gamma;</mi>
+  </mstyle>
+</math>
+
+? Gamma
+<math title="Gamma">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Gamma;</mo>
+  </mstyle>
+</math>
+
+? iota
+<math title="iota">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&iota;</mi>
+  </mstyle>
+</math>
+
+? kappa
+<math title="kappa">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&kappa;</mi>
+  </mstyle>
+</math>
+
+? lambda
+<math title="lambda">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&lambda;</mi>
+  </mstyle>
+</math>
+
+? Lambda
+<math title="Lambda">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Lambda;</mo>
+  </mstyle>
+</math>
+
+? mu
+<math title="mu">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&mu;</mi>
+  </mstyle>
+</math>
+
+? nu
+<math title="nu">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&nu;</mi>
+  </mstyle>
+</math>
+
+? omega
+<math title="omega">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&omega;</mi>
+  </mstyle>
+</math>
+
+? Omega
+<math title="Omega">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Omega;</mo>
+  </mstyle>
+</math>
+
+? phi
+<math title="phi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&phi;</mi>
+  </mstyle>
+</math>
+
+? varphi
+<math title="varphi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&varphi;</mi>
+  </mstyle>
+</math>
+
+? Phi
+<math title="Phi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Phi;</mo>
+  </mstyle>
+</math>
+
+? pi
+<math title="pi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&pi;</mi>
+  </mstyle>
+</math>
+
+? Pi
+<math title="Pi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Pi;</mo>
+  </mstyle>
+</math>
+
+? psi
+<math title="psi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&psi;</mi>
+  </mstyle>
+</math>
+
+? Psi
+<math title="Psi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&Psi;</mi>
+  </mstyle>
+</math>
+
+? rho
+<math title="rho">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&rho;</mi>
+  </mstyle>
+</math>
+
+? sigma
+<math title="sigma">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&sigma;</mi>
+  </mstyle>
+</math>
+
+? Sigma
+<math title="Sigma">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Sigma;</mo>
+  </mstyle>
+</math>
+
+? tau
+<math title="tau">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&tau;</mi>
+  </mstyle>
+</math>
+
+? theta
+<math title="theta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&theta;</mi>
+  </mstyle>
+</math>
+
+? vartheta
+<math title="vartheta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&vartheta;</mi>
+  </mstyle>
+</math>
+
+? Theta
+<math title="Theta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Theta;</mo>
+  </mstyle>
+</math>
+
+? upsilon
+<math title="upsilon">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&upsilon;</mi>
+  </mstyle>
+</math>
+
+? xi
+<math title="xi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&xi;</mi>
+  </mstyle>
+</math>
+
+? Xi
+<math title="Xi">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&Xi;</mo>
+  </mstyle>
+</math>
+
+? zeta
+<math title="zeta">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>&zeta;</mi>
+  </mstyle>
+</math>

@@ -1,0 +1,189 @@
+? sin
+<math title="sin">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>sin</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? cos
+<math title="cos">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>cos</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? tan
+<math title="tan">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>tan</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? csc
+<math title="csc">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>csc</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? sec
+<math title="sec">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>sec</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? cot
+<math title="cot">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>cot</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? sinh
+<math title="sinh">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>sinh</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? cosh
+<math title="cosh">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>cosh</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? tanh
+<math title="tanh">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>tanh</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? log
+<math title="log">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>log</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? ln
+<math title="ln">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>ln</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? det
+<math title="det">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>det</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? dim
+<math title="dim">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>dim</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? lim
+<math title="lim">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>lim</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? mod
+<math title="mod">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>mod</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? gcd
+<math title="gcd">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>gcd</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? lcm
+<math title="lcm">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>lcm</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? min
+<math title="min">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>min</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
+
+? max
+<math title="max">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+#    <mrow>
+      <mo>max</mo>
+#      <mo></mo>
+#    </mrow>
+  </mstyle>
+</math>
