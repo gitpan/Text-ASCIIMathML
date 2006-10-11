@@ -356,7 +356,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -381,14 +381,14 @@ sub SetAttribute : method {
 # Returns:   MathML string
 sub TextToMathML : method {
     my $tree = TextToMathMLTree(@_);
-    return $tree->text;
+    return $tree ? $tree->text : '';
 }
 
 # Converts an AsciiMathML string to a tree of MathML nodes
 # Arguments: AsciiMathML string, 
 #            optional ref to array of attribute/value pairs for math node,
 #            optional ref to array of attribute/value pairs for mstyle node
-# Returns:   top Text::ASCIIMathML::Node object
+# Returns:   top Text::ASCIIMathML::Node object or undefined
 sub TextToMathMLTree : method {
     my ($self, $expr, $mathAttr, $mstyleAttr) = @_;
     $expr = '' unless defined $expr;
@@ -397,6 +397,7 @@ sub TextToMathMLTree : method {
     $self->{nestingDepth} = 0;
     $expr =~ s/^\s+//;
     $mstyle->appendChild(($self->_parseExpr($expr, 0))[0]);
+    return unless $mstyle->childNodes > 0;
     my $math = _createMmlNode('math', $mstyle);
     $expr =~ s/\n\s*//g;
     $math->setAttribute(@$mathAttr) if $mathAttr;
@@ -1015,6 +1016,7 @@ sub _parseSexpr : method {
 	    my $what = $1;
 	    # Look for text in both arguments
 	    my $text1 = $result[0];
+	    my $haveTextArgs = 0;
 	    $text1 = $text1->firstChild while $text1->nodeName eq 'mrow';
 	    if ($text1->nodeName eq 'mtext') {
 		my $text2 = $result2[0];
@@ -1027,7 +1029,14 @@ sub _parseSexpr : method {
 		    $self->{Definition_RE} = join '|',
 		    map("\Q$_\E", sort {length($b) - length($a)}
 			keys %{$self->{Definitions}});
+		    $haveTextArgs = 1;
 		}
+	    }
+	    if (! $haveTextArgs) {
+		$newFrag->appendChild(_createMmlNode('mo',
+						     _createTextNode($input)),
+				      $result[0], $result2[0]);
+		return _createMmlNode('mrow', $newFrag), $result2[1];
 	    }
 	    return undef, $result2[1];
 	}

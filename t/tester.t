@@ -5,6 +5,7 @@ use warnings;
 
 use Test::More;
 use lib '../blib/lib';
+use lib 'blib/lib';
 use Text::ASCIIMathML;
 use lib 't';
 use Entities;

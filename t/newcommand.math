@@ -39,3 +39,20 @@
     </mrow>
   </mstyle>
 </math>
+
+? newcommand "FUNKY" ""
+
+? newcommand "NAME" bad
+<math title="newcommand &quot;NAME&quot; bad">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mrow>
+      <mo>newcommand</mo>
+      <mrow>
+        <mtext>NAME</mtext>
+      </mrow>
+      <mi>b</mi>
+    </mrow>
+    <mi>a</mi>
+    <mi>d</mi>
+  </mstyle>
+</math>
