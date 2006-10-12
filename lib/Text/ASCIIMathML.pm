@@ -183,7 +183,7 @@ C<varepsilon> C<varphi> C<vartheta>
 
 =back
 
--head3 Standard functions
+=head3 Standard functions
 
 sin cos tan csc sec cot sinh cosh tanh log ln det dim lim mod gcd lcm
 min max
@@ -339,8 +339,8 @@ Mark Nodine   <mnodine@alum.mit.edu>
 
 =head1 SEE ALSO
 
-MathML::Entities, 
-L<http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.xml>
+ MathML::Entities, 
+ <http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.xml>
 
 =head1 COPYRIGHT
 
@@ -356,7 +356,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.2';
+our $VERSION = '0.3';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {

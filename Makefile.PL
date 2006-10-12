@@ -13,9 +13,6 @@ WriteMakefile(
     ABSTRACT       => 'Perl implementation of ASCIIMathML parser',
     VERSION_FROM   => 'lib/Text/ASCIIMathML.pm',
     PREREQ_PM      => {}, # e.g., Module::Name => 1.1
-    test           => { TESTS => q($(shell find t -name '*.t' -type f)) },
     clean          => { FILES => 'Text-ASCIIMathML-*' },
     dist           => { COMPRESS => 'gzip', SUFFIX => '.gz' },
-    realclean      => { FILES => q(config.log config.log.bak) },
 );
-
