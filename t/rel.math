@@ -4,6 +4,7 @@
     <mo>=</mo>
   </mstyle>
 </math>
+$$=$$
 
 ? !=
 <math title="!=">
@@ -11,6 +12,7 @@
     <mo>&ne;</mo>
   </mstyle>
 </math>
+$$\ne$$
 
 ? <
 <math title="&lt;">
@@ -18,6 +20,7 @@
     <mo>&lt;</mo>
   </mstyle>
 </math>
+$$<$$
 
 ? >
 <math title="&gt;">
@@ -25,6 +28,7 @@
     <mo>&gt;</mo>
   </mstyle>
 </math>
+$$>$$
 
 ? <=
 <math title="&lt;=">
@@ -32,6 +36,7 @@
     <mo>&le;</mo>
   </mstyle>
 </math>
+$$\le$$
 
 ? >=
 <math title="&gt;=">
@@ -39,6 +44,7 @@
     <mo>&ge;</mo>
   </mstyle>
 </math>
+$$\geq$$
 
 ? -<
 <math title="-&lt;">
@@ -46,6 +52,7 @@
     <mo>&Precedes;</mo>
   </mstyle>
 </math>
+$$\prec$$
 
 ? >-
 <math title="&gt;-">
@@ -53,6 +60,7 @@
     <mo>&Succeeds;</mo>
   </mstyle>
 </math>
+$$\succ$$
 
 ? in
 <math title="in">
@@ -60,6 +68,7 @@
     <mo>&isin;</mo>
   </mstyle>
 </math>
+$$\in$$
 
 ? notin
 <math title="notin">
@@ -67,6 +76,7 @@
     <mo>&notin;</mo>
   </mstyle>
 </math>
+$$\notin$$
 
 ? sub
 <math title="sub">
@@ -74,6 +84,7 @@
     <mo>&sub;</mo>
   </mstyle>
 </math>
+$$\subset$$
 
 ? sup
 <math title="sup">
@@ -81,6 +92,7 @@
     <mo>&sup;</mo>
   </mstyle>
 </math>
+$$\supset$$
 
 ? sube
 <math title="sube">
@@ -88,6 +100,7 @@
     <mo>&sube;</mo>
   </mstyle>
 </math>
+$$\subseteq$$
 
 ? supe
 <math title="supe">
@@ -95,6 +108,7 @@
     <mo>&supe;</mo>
   </mstyle>
 </math>
+$$\supseteq$$
 
 ? -=
 <math title="-=">
@@ -102,6 +116,7 @@
     <mo>&equiv;</mo>
   </mstyle>
 </math>
+$$\equiv$$
 
 ? ~=
 <math title="~=">
@@ -109,6 +124,7 @@
     <mo>&cong;</mo>
   </mstyle>
 </math>
+$$\cong$$
 
 ? ~~
 <math title="~~">
@@ -116,6 +132,7 @@
     <mo>&asymp;</mo>
   </mstyle>
 </math>
+$$\approx$$
 
 ? prop
 <math title="prop">
@@ -123,3 +140,4 @@
     <mo>&prop;</mo>
   </mstyle>
 </math>
+$$\propto$$

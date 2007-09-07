@@ -5,6 +5,7 @@
     <mi>a</mi>
   </mstyle>
 </math>
+$$- a$$
 
 ? E=mc^2
 <math title="E=mc^2">
@@ -18,6 +19,7 @@
     </msup>
   </mstyle>
 </math>
+$$E = m c^2$$
 
 ? e^(ipi)=-1
 <math title="e^(ipi)=-1">
@@ -34,6 +36,7 @@
     <mn>1</mn>
   </mstyle>
 </math>
+$$e^{i \pi} = - 1$$
 
 ? a !<= b !>= c
 <math title="a !&lt;= b !&gt;= c">
@@ -47,6 +50,7 @@
     <mi>c</mi>
   </mstyle>
 </math>
+$$a ! \le b ! \geq c$$
 
 ? a!=0
 <math title="a!=0">
@@ -56,6 +60,7 @@
     <mn>0</mn>
   </mstyle>
 </math>
+$$a \ne 0$$
 
 ? ax^2+bx+c=0
 <math title="ax^2+bx+c=0">
@@ -74,6 +79,7 @@
     <mn>0</mn>
   </mstyle>
 </math>
+$$a x^2 + b x + c = 0$$
 
 ? x^2+y_1+z_12^34
 <math title="x^2+y_1+z_12^34">
@@ -97,6 +103,7 @@
     </mrow>
   </mstyle>
 </math>
+$$x^2 + y_1 + z_{12}^{34}$$
 
 ? a//b
 <math title="a//b">
@@ -106,6 +113,7 @@
     <mi>b</mi>
   </mstyle>
 </math>
+$$a / b$$
 
 ? sqrtsqrtroot3x
 <math title="sqrtsqrtroot3x">
@@ -120,6 +128,7 @@
     </msqrt>
   </mstyle>
 </math>
+$$\sqrt{\sqrt{\sqrt[3]{x}}}$$
 
 ? abc-123.45^-1.1
 <math title="abc-123.45^-1.1">
@@ -137,6 +146,7 @@
     </msup>
   </mstyle>
 </math>
+$$a b c - 123.45^{- 1.1}$$
 
 ? stackrel"def"=
 <math title="stackrel&quot;def&quot;=">
@@ -149,6 +159,7 @@
     </mover>
   </mstyle>
 </math>
+$$\stackrel{\mbox{def}}{=}$$
 
 ? \stackrel{\Delta}{=}" "("or ":=)
 <math title="\stackrel{\Delta}{=}&quot; &quot;(&quot;or &quot;:=)">
@@ -177,6 +188,7 @@
     </mrow>
   </mstyle>
 </math>
+$$\stackrel{\Delta}{=} \mbox{ } ( \mbox{or } := )$$
 
 ? {::}_(\ 92)^238U
 <math title="{::}_(\ 92)^238U">
@@ -194,6 +206,7 @@
     <mi>U</mi>
   </mstyle>
 </math>
+$$\mbox{}_{\, 92}^{238} U$$
 
 ? a_(mn)
 <math title="a_(mn)">
@@ -207,6 +220,7 @@
     </msub>
   </mstyle>
 </math>
+$$a_{m n}$$
 
 ? a_{mn}
 <math title="a_{mn}">
@@ -220,6 +234,7 @@
     </msub>
   </mstyle>
 </math>
+$$a_{m n}$$
 
 ? sqrtx
 <math title="sqrtx">
@@ -229,6 +244,7 @@
     </msqrt>
   </mstyle>
 </math>
+$$\sqrt{x}$$
 
 ? x^2
 <math title="x^2">
@@ -239,6 +255,7 @@
     </msup>
   </mstyle>
 </math>
+$$x^2$$
 
 ? S'
 <math title="S'">
@@ -247,3 +264,4 @@
     <mo>'</mo>
   </mstyle>
 </math>
+$$S '$$

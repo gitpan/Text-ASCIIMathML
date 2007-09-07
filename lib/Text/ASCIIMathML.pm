@@ -9,13 +9,21 @@ Text::ASCIIMathML - Perl extension for parsing ASCIIMathML text into MathML
 
  use Text::ASCIIMathML;
 
- $parser=new ASCII::MathML();
+ $parser=new Text::ASCIIMathML();
 
  $parser->SetAttributes(ForMoz => 1);
 
+ $ASCIIMathML = "int_0^1 e^x dx";
  $mathML = $parser->TextToMathML($ASCIIMathML);
  $mathML = $parser->TextToMathML($ASCIIMathML, [title=>$ASCIIMathML]);
  $mathML = $parser->TextToMathML($ASCIIMathML, undef, [displaystyle=>1]);
+
+ $mathMLTree = $parser->TextToMathMLTree($ASCIIMathML);
+ $mathMLTree = $parser->TextToMathMLTree($ASCIIMathML, [title=>$ASCIIMathML]);
+ $mathMLTree = $parser->TextToMathMLTree($ASCIIMathML,undef,[displaystyle=>1]);
+
+ $mathML = $mathMLTree->text();
+ $latex  = $mathMLTree->latex();
 
 =head1 DESCRIPTION
 
@@ -56,7 +64,8 @@ If you encode 'x^2' or 'a_(mn)' or 'a_{mn}' or '(x+1)/y' or 'sqrtx',
 you pretty much get what you expect.  The choice of grouping
 parenthesis is up to you (they don't have to match either). If the
 displayed expression can be parsed uniquely without them, they are
-omitted.
+omitted.  Most LaTeX commands are also supported, so the last two
+formulas above can also be written as '\frac{x+1}{y}' and '\sqrt{x}'.
 
 The parser uses no operator precedence and only respects the grouping
 brackets, subscripts, superscript, fractions and (square) roots. This
@@ -77,7 +86,8 @@ The vertical bar C<|> separates the alternatives.
  c ::= [A-z] | numbers | greek letters | other constant symbols 
 				    (see below)
  u ::= 'sqrt' | 'text' | 'bb' | other unary symbols for font commands
- b ::= 'frac' | 'root' | 'stackrel' binary symbols
+ b ::= 'frac' | 'root' | 'stackrel' | 'newcommand' | 'newsymbol'
+                                    binary symbols
  l ::= ( | [ | { | (: | {:          left brackets
  r ::= ) | ] | } | :) | :}          right brackets
  S ::= c | lEr | uS | bSS | "any"   simple expression
@@ -134,6 +144,8 @@ these expressions are translated to
 
 Note that each row must have the same number of expressions, and there
 should be at least two rows.
+
+LaTeX matrix commands are not recognized.
 
 =head3 Tokenization
 
@@ -327,7 +339,83 @@ min max
  tt A	  Teletype (monospace) A
  fr A	  Fraktur A
  sf A	  Sans-serif A
+
+=head3 Defining new commands and symbols
+
+It is possible to define new commands and symbols using the
+'newcommand' and 'newsymbol' binary operators.  The former defines a
+macro that gets expanded and reparsed as ASCIIMathML and the latter
+defines a constant that gets used as a math operator (C<< <mo> >>)
+element.  Both of the arguments must be text, optionally enclosed in
+grouping operators.  The 'newsymbol' operator also allows the
+second argument to be a group of two text strings where the first is
+the mathml operator and the second is the latex code to be output.
+
+For example, 'newcommand "DDX" "{:d/dx:}"' would define a new command
+'DDX'.  It could then be invoked like 'DDXf(x)', which would
+expand to '{:d/dx:}f(x)'.  The text 'newsymbol{"!le"}{"&#x2270;"}'
+could be used to create a symbol you could invoke with '!le', as in 'a
+!le b'.
  
+=head2 Attributes for <math>
+
+=over 4
+
+=item C<title>
+
+The title attribute for the element, if specified.  In many browsers,
+this string will appear if you hover over the MathML markup.
+
+=item C<id>
+
+The id attribute for the element, if specified.  
+
+=item C<class>
+
+The class attribute for the element, if specified.
+
+=back
+
+=head2 Attributes for <mstyle>
+
+=over 4
+
+=item C<displaystyle>
+
+The displaystyle attribute for the element, if specified.  One of the
+values "true" or "false".  If the displaystyle is false, then fractions
+are represented with a smaller font size and the placement of
+subscripts and superscripts of sums and integrals changes.
+
+=item C<mathvariant>
+
+The mathvariant attribute for the element, if specified. One of the
+values "normal", "bold", "italic", "bold-italic", "double-struck",
+"bold-fraktur", "script", "bold-script", "fraktur", "sans-serif",
+"bold-sans-serif", "sans-serif-italic", "sans-serif-bold-italic", or
+"monospace".
+
+=item C<mathsize>
+
+The mathsize attribute for the element, if specified. Either "small",
+"normal" or "big", or of the form "number v-unit".
+
+=item C<mathfamily>
+
+A string representing the font family.
+
+=item C<mathcolor>
+
+The mathcolor attribute for the element, if specified. It be in one of
+the forms "#rgb" or "#rrggbb", or should be an html-color-name.
+
+=item C<mathbackground>
+
+The mathbackground attribute for the element, if specified. It should
+be in one of the forms "#rgb" or "#rrggbb", or an html-color-name, or
+the keyword "transparent".
+
+
 =head1 BUGS AND SUGGESTIONS
 
 If you find bugs, think of anything that could improve Text::ASCIIMathML
@@ -341,6 +429,12 @@ Mark Nodine   <mnodine@alum.mit.edu>
 
  MathML::Entities, 
  <http://www1.chapman.edu/~jipsen/mathml/asciimathsyntax.xml>
+
+=head1 ACKNOWLEDGEMENTS
+
+This Perl module has been created by modifying Peter Jipsen's
+ASCIIMathML.js script. He deserves full credit for the original
+implementation; any bugs have probably been introduced by me.
 
 =head1 COPYRIGHT
 
@@ -356,7 +450,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -392,13 +486,13 @@ sub TextToMathML : method {
 sub TextToMathMLTree : method {
     my ($self, $expr, $mathAttr, $mstyleAttr) = @_;
     $expr = '' unless defined $expr;
-    my $mstyle = _createElementMathML('mstyle');
+    my $mstyle = $self->_createElementMathML('mstyle');
     $mstyle->setAttribute(@$mstyleAttr) if $mstyleAttr;
     $self->{nestingDepth} = 0;
     $expr =~ s/^\s+//;
     $mstyle->appendChild(($self->_parseExpr($expr, 0))[0]);
     return unless $mstyle->childNodes > 0;
-    my $math = _createMmlNode('math', $mstyle);
+    my $math = $self->_createMmlNode('math', $mstyle);
     $expr =~ s/\n\s*//g;
     $math->setAttribute(@$mathAttr) if $mathAttr;
     
@@ -410,24 +504,25 @@ sub TextToMathMLTree : method {
 # Creates an Text::ASCIIMathML::Node object with no tag
 # Arguments: None
 # Returns:   node object
-sub _createDocumentFragment {
-    return Text::ASCIIMathML::Node->new;
+sub _createDocumentFragment : method {
+    my ($self) = @_;
+    return Text::ASCIIMathML::Node->new($self);
 }
 
 # Creates an Text::ASCIIMathML::Node object
 # Arguments: tag
 # Returns:   node object
-sub _createElementMathML {
-    my ($t) = @_;
-    return Text::ASCIIMathML::Node->new ($t);
+sub _createElementMathML : method {
+    my ($self, $t) = @_;
+    return Text::ASCIIMathML::Node->new($self, $t);
 }
 
 # Creates an Text::ASCIIMathML::Node object and appends a node as a child
 # Arguments: tag, node
 # Returns:   node object
-sub _createMmlNode {
-    my ($t, $obj) = @_;
-    my $node = Text::ASCIIMathML::Node->new ($t);
+sub _createMmlNode : method {
+    my ($self, $t, $obj) = @_;
+    my $node = Text::ASCIIMathML::Node->new($self, $t);
     $node->appendChild($obj);
     return $node;
 }
@@ -435,9 +530,9 @@ sub _createMmlNode {
 # Creates an Text::ASCIIMathML::Node text object with the given text
 # Arguments: text
 # Returns:   node object
-sub _createTextNode {
-    my ($text) = @_;
-    return newText Text::ASCIIMathML::Node ($text);
+sub _createTextNode : method {
+    my ($self, $text) = @_;
+    return Text::ASCIIMathML::Node->newText ($self, $text);
 }
 
 # Finds maximal initial substring of str that appears in names
@@ -471,7 +566,7 @@ my %AMSymbol = (
 "\"" => { tag=>"mtext", output=>"mbox", tex=>'', ttype=>"TEXT" },
 
 # new for perl
-"newcommand" => { ttype=>"BINARY" },
+"newcommand" => { ttype=>"BINARY"},
 "newsymbol" => { ttype=>"BINARY" },
 
 # some greek symbols
@@ -519,7 +614,7 @@ my %AMSymbol = (
 "\\\\" => { tag=>"mo", output=>"\\",   tex=>"backslash", ttype=>"CONST" },
 "setminus" => { tag=>"mo", output=>"\\", tex=>'', ttype=>"CONST" },
 "xx" => { tag=>"mo", output=>"&#x00D7;", tex=>"times", ttype=>"CONST" },
-"-:" => { tag=>"mo", output=>"&#x00F7;", tex=>"divide", ttype=>"CONST" },
+"-:" => { tag=>"mo", output=>"&#x00F7;", tex=>"div", ttype=>"CONST" },
 "@" => { tag=>"mo", output=>"&#x2218;", tex=>"circ", ttype=>"CONST" },
 "o+" => { tag=>"mo", output=>"&#x2295;", tex=>"oplus", ttype=>"CONST" },
 "ox" => { tag=>"mo", output=>"&#x2297;", tex=>"otimes", ttype=>"CONST" },
@@ -568,7 +663,7 @@ my %AMSymbol = (
 "or" => { tag=>"mtext", output=>"or",  tex=>'', ttype=>"SPACE" },
 "not" => { tag=>"mo", output=>"&#x00AC;", tex=>"neg", ttype=>"CONST" },
 "=>" => { tag=>"mo", output=>"&#x21D2;", tex=>"implies", ttype=>"CONST" },
-"if" => { tag=>"mo", output=>"if",     tex=>'', ttype=>"SPACE" },
+"if" => { tag=>"mo", output=>"if",     tex=>'if', ttype=>"SPACE" },
 "<=>" => { tag=>"mo", output=>"&#x21D4;", tex=>"iff", ttype=>"CONST" },
 "AA" => { tag=>"mo", output=>"&#x2200;", tex=>"forall", ttype=>"CONST" },
 "EE" => { tag=>"mo", output=>"&#x2203;", tex=>"exists", ttype=>"CONST" },
@@ -588,8 +683,8 @@ my %AMSymbol = (
 # {input:"||", tag:"mo", output:"||", tex:null, ttype:LEFTRIGHT},
 "(:" => { tag=>"mo", output=>"&#x2329;", tex=>"langle", ttype=>"LEFTBRACKET" },
 ":)" => { tag=>"mo", output=>"&#x232A;", tex=>"rangle", ttype=>"RIGHTBRACKET" },
-"<<" => { tag=>"mo", output=>"&#x2329;", tex=>'', ttype=>"LEFTBRACKET" },
-">>" => { tag=>"mo", output=>"&#x232A;", tex=>'', ttype=>"RIGHTBRACKET" },
+"<<" => { tag=>"mo", output=>"&#x2329;", tex=>'langle', ttype=>"LEFTBRACKET" },
+">>" => { tag=>"mo", output=>"&#x232A;", tex=>'rangle', ttype=>"RIGHTBRACKET" },
 "{:" => { tag=>"mo", output=>"{:", tex=>'', ttype=>"LEFTBRACKET", invisible=>"true" },
 ":}" => { tag=>"mo", output=>":}", tex=>'', ttype=>"RIGHTBRACKET", invisible=>"true" },
 
@@ -609,7 +704,7 @@ my %AMSymbol = (
 "..." => { tag=>"mo", output=>"...",    tex=>"ldots", ttype=>"CONST" },
 ":." => { tag=>"mo", output=>"&#x2234;",  tex=>"therefore", ttype=>"CONST" },
 "/_" => { tag=>"mo", output=>"&#x2220;",  tex=>"angle", ttype=>"CONST" },
-"\\ " => { tag=>"mo", output=>"&#x00A0;", tex=>'', ttype=>"CONST" },
+"\\ " => { tag=>"mo", output=>"&#x00A0;", tex=>'\,', ttype=>"CONST" },
 "quad" => { tag=>"mo", output=>"&#x00A0;&#x00A0;", tex=>'', ttype=>"CONST" },
 "qquad" => { tag=>"mo", output=>"&#x00A0;&#x00A0;&#x00A0;&#x00A0;", tex=>'', ttype=>"CONST" },
 "cdots" => { tag=>"mo", output=>"&#x22EF;", tex=>'', ttype=>"CONST" },
@@ -619,8 +714,8 @@ my %AMSymbol = (
 "square" => { tag=>"mo", output=>"&#x25A1;", tex=>'', ttype=>"CONST" },
 "|__" => { tag=>"mo", output=>"&#x230A;",  tex=>"lfloor", ttype=>"CONST" },
 "__|" => { tag=>"mo", output=>"&#x230B;",  tex=>"rfloor", ttype=>"CONST" },
-"|~" => { tag=>"mo", output=>"&#x2308;",  tex=>"lceiling", ttype=>"CONST" },
-"~|" => { tag=>"mo", output=>"&#x2309;",  tex=>"rceiling", ttype=>"CONST" },
+"|~" => { tag=>"mo", output=>"&#x2308;",  tex=>"lceil", ttype=>"CONST" },
+"~|" => { tag=>"mo", output=>"&#x2309;",  tex=>"rceil", ttype=>"CONST" },
 "CC" => { tag=>"mo", output=>"&#x2102;", tex=>'', ttype=>"CONST" },
 "NN" => { tag=>"mo", output=>"&#x2115;", tex=>'', ttype=>"CONST" },
 "QQ" => { tag=>"mo", output=>"&#x211A;", tex=>'', ttype=>"CONST" },
@@ -708,10 +803,16 @@ sub _getSymbol_ : method {
         /^([A-Za-z])/ and
 	    return $1, {tag=>'mi', output=>$1, ttype=>'CONST'};
         /^(.)/ and 
-	    return $1 eq '-' && $self->{previousSymbol} eq 'INFIX' ?
+	    return $1 eq '-' && defined $self->{previousSymbol} &&
+	    $self->{previousSymbol} eq 'INFIX' ?
 	    ($1, {tag=>'mo', output=>$1, ttype=>'UNARY', func=>"true"} ) :
 	    ($1, {tag=>'mo', output=>$1, ttype=>'CONST'});
     }
+}
+
+# Used so that Text::ASCIIMathML::Node can get access to the symbol table
+sub _get_amsymbol_ {
+    return \%AMSymbol;
 }
 }
 
@@ -720,7 +821,7 @@ sub _getSymbol_ : method {
 # Returns: parsed node (if successful), remaining unparsed string
 sub _parseExpr : method {
     my ($self, $str, $rightbracket) = @_;
-    my $newFrag = _createDocumentFragment();
+    my $newFrag = $self->_createDocumentFragment();
     my ($node, $input, $symbol);
     do {
 	$str = _removeCharsAndBlanks($str, 0);
@@ -733,11 +834,12 @@ sub _parseExpr : method {
 		_removeBrackets($result[0]);
 	    }
 	    else { # show box in place of missing argument
-		$result[0] = _createMmlNode('mo', _createTextNode('&#25A1;'));
+		$result[0] = $self->_createMmlNode
+		    ('mo', $self->_createTextNode('&#25A1;'));
 	    }
 	    $str = $result[1];
 	    _removeBrackets($node);
-	    $node = _createMmlNode($symbol->{tag}, $node);
+	    $node = $self->_createMmlNode($symbol->{tag}, $node);
 	    $node->appendChild($result[0]);
 	    $newFrag->appendChild($node);
 	    ($input, $symbol) = $self->_getSymbol($str);
@@ -788,10 +890,10 @@ sub _parseExpr : method {
 			}
 		    }
 		    if ($matrix) {
-			my $table = _createDocumentFragment();
+			my $table = $self->_createDocumentFragment();
 			for (my $i=0; $i<$m; $i += 2) {
-			    my $row  = _createDocumentFragment();
-			    my $frag = _createDocumentFragment();
+			    my $row  = $self->_createDocumentFragment();
+			    my $frag = $self->_createDocumentFragment();
 			    # <mrow>(-,-,...,-,-)</mrow>
 			    $node = $newFrag->firstChild;
 			    my $n = $node->childNodes;
@@ -800,9 +902,9 @@ sub _parseExpr : method {
 			    for (my $j=1; $j<$n-1; $j++) {
 				if ($k < @{$pos[$i]} && $j == $pos[$i][$k]) {
 				    # remove ,
-				    $row->appendChild(_createMmlNode('mtd',
-								     $frag));
-				    $frag = _createDocumentFragment();
+				    $row->appendChild
+					($self->_createMmlNode('mtd', $frag));
+				    $frag = $self->_createDocumentFragment();
 				    $k++;
 				}
 				else {
@@ -810,16 +912,18 @@ sub _parseExpr : method {
 				}
 				$node->removeChild($node->firstChild);
 			    }
-			    $row->appendChild(_createMmlNode('mtd', $frag));
+			    $row->appendChild
+				($self->_createMmlNode('mtd', $frag));
 			    if ($newFrag->childNodes > 2) {
 				# remove <mrow>)</mrow>
 				$newFrag->removeChild($newFrag->firstChild);
 				# remove <mo>,</mo>
 				$newFrag->removeChild($newFrag->firstChild);
 			    }
-			    $table->appendChild(_createMmlNode('mtr', $row));
+			    $table->appendChild
+				($self->_createMmlNode('mtr', $row));
 			}
-			$node = _createMmlNode('mtable', $table);
+			$node = $self->_createMmlNode('mtable', $table);
 			$node->setAttribute('columnalign', 'left')
 			    if $symbol->{invisible};
 			$newFrag->replaceChild($node, $newFrag->firstChild);
@@ -829,7 +933,8 @@ sub _parseExpr : method {
 	}
 	$str = _removeCharsAndBlanks($str, length $input);
 	if (! $symbol->{invisible}) {
-	    $node = _createMmlNode('mo', _createTextNode($symbol->{output}));
+	    $node = $self->_createMmlNode
+		('mo', $self->_createTextNode($symbol->{output}));
 	    $newFrag->appendChild($node);
 	}
     }
@@ -854,7 +959,8 @@ sub _parseIexpr : method {
 	    _removeBrackets($result[0]);
 	}
 	else { # show box in place of missing argument
-	    $result[0] = _createMmlNode('mo', _createTextNode("&#25A1;"));
+	    $result[0] = $self->_createMmlNode
+		('mo', $self->_createTextNode("&#25A1;"));
 	}
 	$str = $result[1];
 	if ($input eq '_') {
@@ -865,20 +971,20 @@ sub _parseIexpr : method {
 		my @res2 = $self->_parseSexpr($str);
 		_removeBrackets($res2[0]);
 		$str = $res2[1];
-		$node = _createMmlNode
+		$node = $self->_createMmlNode
 		    ($underover ? 'munderover' : 'msubsup', $node);
 		$node->appendChild($result[0]);
 		$node->appendChild($res2[0]);
-		$node = _createMmlNode('mrow',$node); # so sum does not stretch
+		$node = $self->_createMmlNode('mrow',$node); # so sum does not stretch
 	    }
 	    else {
-		$node = _createMmlNode
+		$node = $self->_createMmlNode
 		    ($underover ? 'munder' : 'msub', $node);
 		$node->appendChild($result[0]);
 	    }
 	}
 	else {
-	    $node = _createMmlNode($symbol->{tag}, $node);
+	    $node = $self->_createMmlNode($symbol->{tag}, $node);
 	    $node->appendChild($result[0]);
 	}
     }
@@ -890,7 +996,7 @@ sub _parseIexpr : method {
 # Returns: parsed node (if successful), remaining unparsed string
 sub _parseSexpr : method {
     my ($self, $str) = @_;
-    my $newFrag = _createDocumentFragment();
+    my $newFrag = $self->_createDocumentFragment();
     $str = _removeCharsAndBlanks($str, 0);
     my ($input, $symbol) = $self->_getSymbol($str);
     return (undef, $str)
@@ -904,7 +1010,8 @@ sub _parseSexpr : method {
     if ($ttype =~ /UNDEROVER|CONST/) {
 	$str = _removeCharsAndBlanks($str, length $input);
 	return
-	    _createMmlNode($symbol->{tag}, _createTextNode($symbol->{output})),
+	    $self->_createMmlNode($symbol->{tag},
+				  $self->_createTextNode($symbol->{output})),
 	    $str;
     }
     if ($ttype eq 'LEFTBRACKET') {
@@ -914,11 +1021,12 @@ sub _parseSexpr : method {
 	$self->{nestingDepth}--;
 	my $node;
 	if ($symbol->{invisible}) {
-	    $node = _createMmlNode('mrow', $result[0]);
+	    $node = $self->_createMmlNode('mrow', $result[0]);
 	}
 	else {
-	    $node = _createMmlNode('mo', _createTextNode($symbol->{output}));
-	    $node = _createMmlNode('mrow', $node);
+	    $node = $self->_createMmlNode
+		('mo', $self->_createTextNode($symbol->{output}));
+	    $node = $self->_createMmlNode('mrow', $node);
 	    $node->appendChild($result[0]);
 	}
 	return $node, $result[1];
@@ -934,41 +1042,45 @@ sub _parseSexpr : method {
 		$str =~ /^(\{(.*?)\})/);
 	($input, $st) = ($str) x 2 unless defined $st;
 	if (substr($st, 0, 1) eq ' ') {
-	    my $node = _createElementMathML('mspace');
+	    my $node = $self->_createElementMathML('mspace');
 	    $node->setAttribute(width=>'1ex');
 	    $newFrag->appendChild($node);
 	}
-	$newFrag->appendChild(_createMmlNode($symbol->{tag},
-					     _createTextNode($st)));
+	$newFrag->appendChild
+	    ($self->_createMmlNode($symbol->{tag},
+				   $self->_createTextNode($st)));
 	if (substr($st, -1) eq ' ') {
-	    my $node = _createElementMathML('mspace');
+	    my $node = $self->_createElementMathML('mspace');
 	    $node->setAttribute(width=>'1ex');
 	    $newFrag->appendChild($node);
 	}
 	$str = _removeCharsAndBlanks($str, length $input);
-	return _createMmlNode('mrow', $newFrag), $str;
+	return $self->_createMmlNode('mrow', $newFrag), $str;
     }
     if ($ttype eq 'UNARY') {
 	$str = _removeCharsAndBlanks($str, length $input);
 	my @result = $self->_parseSexpr($str);
-	return (_createMmlNode($symbol->{tag},
-			       _createTextNode($symbol->{output})), $str)
+	return ($self->_createMmlNode
+		($symbol->{tag},
+		 $self->_createTextNode($symbol->{output})), $str)
 	    if ! defined $result[0];
 	if ($symbol->{func}) {
-	    return (_createMmlNode($symbol->{tag},
-				   _createTextNode($symbol->{output})), $str)
+	    return ($self->_createMmlNode
+		    ($symbol->{tag},
+		     $self->_createTextNode($symbol->{output})), $str)
 		if $str =~ m!^[\^_/|]!;
-	    my $node = _createMmlNode
-		('mrow', _createMmlNode($symbol->{tag},
-					_createTextNode($symbol->{output})));
+	    my $node = $self->_createMmlNode
+		('mrow', $self->_createMmlNode
+		 ($symbol->{tag}, $self->_createTextNode($symbol->{output})));
 	    $node->appendChild($result[0]);
 	    return $node, $result[1];
 	}
 	_removeBrackets($result[0]);
 	if ($symbol->{acc}) {	# accent
-	    my $node = _createMmlNode($symbol->{tag}, $result[0]);
+	    my $node = $self->_createMmlNode($symbol->{tag}, $result[0]);
 	    $node->appendChild
-		(_createMmlNode('mo', _createTextNode($symbol->{output})));
+		($self->_createMmlNode
+		 ('mo', $self->_createTextNode($symbol->{output})));
 	    return $node, $result[1];
 	}
 	if ($symbol->{atname}) { # font change command
@@ -982,34 +1094,31 @@ sub _parseSexpr : method {
 			    $childNodes[$i]->firstChild->nodeValue;
 			$st =~ s/([A-Z])/sprintf "&#x%X;",$symbol->{codes}[ord($1)-65]/ge;
 			if ($nodeName eq 'mi') {
-			    $result[0] = #_createElementMathML('mo')->(
-#				appendChild(
-					    _createTextNode($st);#);
+			    $result[0] = $self->_createTextNode($st);
 			}
 			else {
 			    $result[0]->replaceChild
-				( #_createElementMathML('mo')->
-				 #appendChild(
-				  _createTextNode($st), #),
-				 $childNodes[$i]);
+				($self->_createTextNode($st), $childNodes[$i]);
 			}
 		    }
 		}
 	    }
-	    my $node = _createMmlNode($symbol->{tag}, $result[0]);
+	    my $node = $self->_createMmlNode($symbol->{tag}, $result[0]);
 	    $node->setAttribute($symbol->{atname}=>$symbol->{atval});
 	    return $node, $result[1];
 	}
-	return _createMmlNode($symbol->{tag}, $result[0]), $result[1];
+	return $self->_createMmlNode($symbol->{tag}, $result[0]), $result[1];
     }
     if ($ttype eq 'BINARY') {
 	$str = _removeCharsAndBlanks($str, length $input);
 	my @result = $self->_parseSexpr($str);
-	return (_createMmlNode('mo', _createTextNode($input)), $str)
+	return ($self->_createMmlNode
+		('mo', $self->_createTextNode($input)), $str)
 	    if ! defined $result[0];
 	_removeBrackets($result[0]);
 	my @result2 = $self->_parseSexpr($result[1]);
-	return (_createMmlNode('mo', _createTextNode($input)), $str)
+	return ($self->_createMmlNode
+		('mo', $self->_createTextNode($input)), $str)
 	    if ! defined $result2[0];
 	_removeBrackets($result2[0]);
 	if ($input =~ /new(command|symbol)/) {
@@ -1021,22 +1130,33 @@ sub _parseSexpr : method {
 	    if ($text1->nodeName eq 'mtext') {
 		my $text2 = $result2[0];
 		$text2 = $text2->firstChild while $text2->nodeName eq 'mrow';
+		my $latex;
+		if ($result2[0]->childNodes > 1 && $input eq 'newsymbol') {
+		    # Process the latex string for a newsymbol
+		    my $latexdef = $result2[0]->child(1);
+		    $latexdef = $latexdef->firstChild
+			while $latexdef->nodeName eq 'mrow';
+		    $latex = $latexdef->firstChild->nodeValue;
+		}
 		if ($text2->nodeName eq 'mtext') {
 		    $self->{Definitions}{$text1->firstChild->nodeValue} = {
 			tag   =>'mo',
 			output=>$text2->firstChild->nodeValue,
-			ttype =>$what eq 'symbol' ? 'CONST' : 'DEFINITION' };
+			ttype =>$what eq 'symbol' ? 'CONST' : 'DEFINITION',
+		    };
 		    $self->{Definition_RE} = join '|',
 		    map("\Q$_\E", sort {length($b) - length($a)}
 			keys %{$self->{Definitions}});
+		    $self->{Latex}{$text2->firstChild->nodeValue} = $latex
+			if defined $latex;
 		    $haveTextArgs = 1;
 		}
 	    }
 	    if (! $haveTextArgs) {
-		$newFrag->appendChild(_createMmlNode('mo',
-						     _createTextNode($input)),
+		$newFrag->appendChild($self->_createMmlNode
+				      ('mo', $self->_createTextNode($input)),
 				      $result[0], $result2[0]);
-		return _createMmlNode('mrow', $newFrag), $result2[1];
+		return $self->_createMmlNode('mrow', $newFrag), $result2[1];
 	    }
 	    return undef, $result2[1];
 	}
@@ -1047,24 +1167,25 @@ sub _parseSexpr : method {
 	if ($input eq 'frac') {
 	    $newFrag->appendChild($result2[0]);
 	}
-	return _createMmlNode($symbol->{tag}, $newFrag), $result2[1];
+	return $self->_createMmlNode($symbol->{tag}, $newFrag), $result2[1];
     }
     if ($ttype eq 'INFIX') {
 	$str = _removeCharsAndBlanks($str, length $input);
-	return _createMmlNode('mo', _createTextNode($symbol->{output})), $str;
+	return $self->_createMmlNode
+	    ('mo', $self->_createTextNode($symbol->{output})), $str;
     }
     if ($ttype eq 'SPACE') {
 	$str = _removeCharsAndBlanks($str, length $input);
-	my $node = _createElementMathML('mspace');
+	my $node = $self->_createElementMathML('mspace');
 	$node->setAttribute('width', '1ex');
 	$newFrag->appendChild($node);
 	$newFrag->appendChild
-	    (_createMmlNode($symbol->{tag},
-			    _createTextNode($symbol->{output})));
- 	$node = _createElementMathML('mspace');
+	    ($self->_createMmlNode($symbol->{tag},
+				   $self->_createTextNode($symbol->{output})));
+ 	$node = $self->_createElementMathML('mspace');
  	$node->setAttribute('width', '1ex');
 	$newFrag->appendChild($node);
-	return _createMmlNode('mrow', $newFrag), $str;
+	return $self->_createMmlNode('mrow', $newFrag), $str;
     }
     if ($ttype eq 'LEFTRIGHT') {
 	$self->{nestingDepth}++;
@@ -1073,8 +1194,9 @@ sub _parseSexpr : method {
 	$self->{nestingDepth}--;
 	my $st = $result[0]->lastChild ?
 	    $result[0]->lastChild->firstChild->nodeValue : '';
-	my $node = _createMmlNode('mo',_createTextNode($symbol->{output}));
-	$node = _createMmlNode('mrow', $node);
+	my $node = $self->_createMmlNode
+	    ('mo',$self->_createTextNode($symbol->{output}));
+	$node = $self->_createMmlNode('mrow', $node);
 	if ($st eq '|') { 	# it's an absolute value subterm
 	    $node->appendChild($result[0]);
 	    return $node, $result[1];
@@ -1083,8 +1205,9 @@ sub _parseSexpr : method {
 	return $node, $str;
     }
     $str = _removeCharsAndBlanks($str, length $input);
-    return _createMmlNode($symbol->{tag}, # it's a constant
-			  _createTextNode($symbol->{output})), $str;
+    return $self->_createMmlNode
+	($symbol->{tag}, # it's a constant
+	 $self->_createTextNode($symbol->{output})), $str;
 }
 
 # Removes brackets at the beginning or end of an mrow node
@@ -1107,7 +1230,7 @@ sub _removeBrackets {
 sub _removeCharsAndBlanks {
     my ($str, $n) = @_;
     my $st = substr($str, 
-		    substr($str, $n) =~ /^\\[^\\ ]/ ? $n+1 : $n);
+		    substr($str, $n) =~ /^\\[^\\ ,]/ ? $n+1 : $n);
     $st =~ s/^[\x00-\x20]+//;
     return $st;
 }
@@ -1137,24 +1260,31 @@ sub _xml_encode {
 
 package Text::ASCIIMathML::Node;
 
+{
+    # Create a closure for the following attributes
+    my %parser_of;
+
 # Creates a new Text::ASCIIMathML::Node object
-# Arguments: optional tag
+# Arguments: Text::ASCIIMathML object, optional tag
 # Returns: new object
 sub new {
-    my ($class, $tag) = @_;
+    my ($class, $parser, $tag) = @_;
     my $obj = bless { children=>[] }, $class;
     if (defined $tag) { $obj->{tag} = $tag }
     else { $obj->{frag} = 1 }
+    $parser_of{$obj} = $parser;
     return $obj;
 }
 
 # Creates a new Text::ASCIIMathML::Node text object
-# Arguments: text
+# Arguments: Text::ASCIIMathML object, text
 # Returns: new object
 sub newText {
-    my ($class, $text) = @_;
+    my ($class, $parser, $text) = @_;
     $text =~ s/^\s*(.*?)\s*$/$1/;	# Delete leading/trailing spaces
-    return bless { text=>$text }, $class;
+    my $obj = bless { text=>$text }, $class;
+    $parser_of{$obj} = $parser;
+    return $obj;
 }
 
 my %Parent;
@@ -1188,6 +1318,15 @@ sub attribute {
 sub attributeList {
     my ($self) = @_;
     return $self->{attrlist} ? @{$self->{attrlist}} : ();
+}
+
+# Returns a child with a given index in the array of children of a node
+# Arguments: index
+# Returns:   Array of node objects
+sub child {
+    my ($self, $index) = @_;
+    return $self->{children} && @{$self->{children}} > $index ?
+	$self->{children}[$index] : $Null;
 }
 
 # Returns an array of children of a node
@@ -1237,6 +1376,237 @@ sub lastChild {
 	$self->{children}[-1] : $Null;
 }
 
+BEGIN {
+# Creates closure for following "static" variables
+my (%LatexSym, %LatexMover, %LatexFont, %LatexOp);
+
+# Returns a latex representation of a node object 
+# Arguments: None
+# Returns:   Text string
+sub latex : method {
+    my ($self) = @_;
+
+    my $parser = $parser_of{$self};
+    if (! %LatexSym) {
+	# Build the entity to latex symbol translator
+	my $amsymbol = Text::ASCIIMathML::_get_amsymbol_();
+	%LatexSym = map(($amsymbol->{$_}{output},
+			 "\\" . ($amsymbol->{$_}{tex} || $_)),
+			grep(defined $amsymbol->{$_}{output} &&
+			     $amsymbol->{$_}{output} =~ /&\#x.*;/,
+			     keys %$amsymbol));
+	my %math_font = (bbb      => 'mathds',
+			 mathbb   => 'mathds',
+			 cc       => 'cal',
+			 mathcal  => 'cal',
+			 fr       => 'mathfrak',
+			 mathfrak => 'mathfrak',
+			 );
+	# Add character codes
+	foreach my $coded (grep $amsymbol->{$_}{codes}, keys %$amsymbol) {
+	    @LatexSym{map(sprintf("&#x%X;", $_),
+			  @{$amsymbol->{$coded}{codes}})} =
+			      map("\\$math_font{$coded}\{$_}", ('A' .. 'Z'));
+	}
+	# Post-process protected symbols
+	$LatexSym{$_} =~ s/^\\\\/\\/ foreach keys %LatexSym;
+	%LatexMover = ('^'         => '\hat',
+		       '\overline' => '\overline',
+		       '\to'       => '\vec',
+		       '.'         => '\dot',
+		       '..'        => '\ddot'
+		       );
+	%LatexFont = (bold            => '\bf',
+		      'double-struck' => '\mathds',
+		      fraktur         => '\mathfrak',
+		      monospace       => '\tt',
+		      'sans-serif'    => '\sf',
+		      script          => '\cal',
+		      );
+	%LatexOp = (if         => '\mbox{if }',
+		    lcm        => '\mbox{lcm}',
+		    newcommand => '\mbox{newcommand}',
+		    "\\"       => '\backslash',
+		    '&lt;'     => '<',
+		    '&gt;'     => '>',
+		    '...'      => '\ldots',
+		    );
+    }
+    if (defined $self->{text}) {
+	my $text = $self->{text};
+	$text =~ s/([{}])/\\$1/;
+	$text =~ s/(&\#x.*?;)/
+	    defined $parser->{Latex}{$1} ? $parser->{Latex}{$1} :
+	    defined $LatexSym{$1} ? $LatexSym{$1} : $1/eg;
+	return $text;
+    }
+    my $tag = $self->{tag};
+    my @child_str;
+    my $child_str = '';
+    if (@{$self->{children}}) {
+	foreach (@{$self->{children}}) {
+	    push @child_str, $_->latex($parser);
+	}
+    }
+
+# mo
+    if ($tag eq 'mo') {
+	# Need to distinguish bmod from pmod
+	my $parent = $self->parent;
+	return $self eq $parent->child(1) &&
+	    $parent->firstChild->firstChild->{text} eq '('
+	    ? '\pmod' : '\bmod'
+	    if $child_str[0] eq 'mod';
+	return $LatexOp{$child_str[0]} if $LatexOp{$child_str[0]};
+	return $child_str[0] =~ /^\w+$/ ? "\\$child_str[0]" : $child_str[0];
+    }
+
+# mrow
+    if ($tag eq 'mrow') {
+	@child_str = grep $_ ne '', @child_str;
+	# Check for pmod function
+	if (@child_str > 1 && $child_str[1] eq '\pmod') {
+	    pop @child_str if $child_str[-1] eq ')';
+	    splice @child_str, 0, 2;
+	    return "\\pmod{@child_str}";
+	}
+	# Check if we need \left ... \right
+	my $is_tall = grep(/[_^]|\\(begin\{array\}|frac|sqrt|stackrel)/,
+			   @child_str);
+	if ($is_tall && @child_str > 1 &&
+	    ($child_str[0]  =~ /^([\(\[|]|\\\{)$/ ||
+	     $child_str[-1] =~ /^([\)\]|]|\\\})$/)) {
+	    if ($child_str[0] =~ /^([\(\[|]|\\\{)$/) {
+		$child_str[0] = "\\left$child_str[0]";
+	    }
+	    else {
+		unshift @child_str, "\\left.";
+	    }
+	    if ($child_str[-1] =~ /^([\)\]|]|\\\})$/) {
+		$child_str[-1] = "\\right$child_str[-1]";
+	    }
+	    else {
+		push @child_str, "\\right.";
+	    }
+	}
+	return "@child_str";
+    }
+
+
+# mi
+# mn
+# math
+# mtd
+    if ($tag =~ /^m([in]|ath|row|td)$/) {
+	@child_str = grep $_ ne '', @child_str;
+	return "@child_str";
+    }
+
+# msub
+# msup
+# msubsup
+# munderover
+    if ($tag =~ /^(msu[bp](sup)?|munderover)$/) {
+	my $base = shift @child_str;
+	$base = '\mbox{}' if $base eq '';
+	# Put {} around arguments with more than one character
+	@child_str = map length($_) > 1 ? "{$_}" : $_, @child_str;
+	return ($tag eq 'msub' ? "${base}_$child_str[0]" :
+		$tag eq 'msup' ? "${base}^$child_str[0]" :
+		"${base}_$child_str[0]^$child_str[1]");
+    }
+
+# mover
+    if ($tag eq 'mover') {
+	# Need to special-case math mode accents
+	return
+	    ($child_str[1] eq '\overline' && length($child_str[0]) == 1 ?
+	     "\\bar{$child_str[0]}" :
+	     $LatexMover{$child_str[1]} ?
+	     "$LatexMover{$child_str[1]}\{$child_str[0]\}" :
+	     "\\stackrel{$child_str[1]}{$child_str[0]}");
+    }
+
+# munder
+    if ($tag eq 'munder') {
+	return $child_str[1] eq '\underline' ? "$child_str[1]\{$child_str[0]}"
+	    : "$child_str[0]_\{$child_str[1]\}";
+    }
+
+# mfrac
+    if ($tag eq 'mfrac') {
+	return "\\frac{$child_str[0]}{$child_str[1]}";
+    }
+
+# msqrt
+    if ($tag eq 'msqrt') {
+	return "\\sqrt{$child_str[0]}";
+    }
+
+# mroot
+    if ($tag eq 'mroot') {
+	return "\\sqrt[$child_str[1]]{$child_str[0]}";
+    }
+
+# mtext
+    if ($tag eq 'mtext') {
+	my $text = $child_str[0];
+	my $next = $self->nextSibling;
+	my $prev = $self->previousSibling;
+	if (defined $next->{tag} && $next->{tag} eq 'mspace') {
+	    $text = "$text ";
+	}
+	if (defined $prev->{tag} && $prev->{tag} eq 'mspace') {
+	    $text = " $text";
+	}
+	$text = ' ' if $text eq '  ';
+	return "\\mbox{$text}";
+    }
+
+
+# mspace
+    if ($tag eq 'mspace') {
+	return ''; 
+    }
+
+# mtable
+    if ($tag eq 'mtable') {
+	my $cols = ($child_str[0] =~ tr/&//) + 1;
+	my $colspec = ($self->{attr}{columnalign} || '') eq 'left' ? 'l' : 'c';
+	my $colspecs = $colspec x $cols;
+	return ("\\begin{array}{$colspecs}\n" .
+		join('', map("  $_ \\\\\n", @child_str)) .
+		"\\end{array}\n");
+    }
+
+# mtr
+    if ($tag eq 'mtr') {
+	return join ' & ', @child_str;
+    }
+
+# mstyle
+    if ($tag eq 'mstyle') {
+	@child_str = grep $_ ne '', @child_str;
+	if ($self->parent->{tag} eq 'math') {
+	    push @child_str, ' ' unless @child_str;
+	    # The top-level mstyle
+	    return (defined $self->{attr}{displaystyle} &&
+		    $self->{attr}{displaystyle} eq 'true') ?
+		    "\$\$@child_str\$\$" : "\$@child_str\$";
+	}
+	else {
+	    # It better be a font changing command
+	    return $child_str[0] if $self->{attr}{mathvariant};
+	    my ($attr) = map($self->{attr}{$_},
+			     grep $self->{attr}{$_},
+			     qw(fontweight fontfamily));
+	    return $attr && $LatexFont{$attr} ?
+		"$LatexFont{$attr}\{$child_str[0]}" : $child_str[0];
+	}
+    }
+}
+}
+
 # Returns the next sibling of a node
 # Arguments: None
 # Returns:   node object or undef
@@ -1268,6 +1638,18 @@ sub nodeValue : method {
 # Returns:   parent node object or undef
 sub parent : method {
     return $Parent{$_[0]} || $Null;
+}
+
+# Returns the previous sibling of a node
+# Arguments: None
+# Returns:   node object or undef
+sub previousSibling {
+    my ($self) = @_;
+    my $parent = $self->parent;
+    for (my $i=1; $i<@{$parent->{children}}; $i++) {
+	return $parent->{children}[$i-1] if $self eq $parent->{children}[$i];
+    }
+    return $Null;
 }
 
 # Removes a given child node from a node
@@ -1327,6 +1709,7 @@ sub text : method {
 	return $tag ? "<$tag$attr>$child_str</$tag>" : $child_str;
     }
     return $tag ? "<$tag$attr/>" : '';
+}
 }
 
 1;

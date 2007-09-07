@@ -4,6 +4,7 @@
     <mo>&uarr;</mo>
   </mstyle>
 </math>
+$$\uparrow$$
 
 ? darr
 <math title="darr">
@@ -11,6 +12,7 @@
     <mo>&darr;</mo>
   </mstyle>
 </math>
+$$\downarrow$$
 
 ? rarr
 <math title="rarr">
@@ -18,6 +20,7 @@
     <mo>&rarr;</mo>
   </mstyle>
 </math>
+$$\to$$
 
 ? ->
 <math title="-&gt;">
@@ -25,6 +28,7 @@
     <mo>&rarr;</mo>
   </mstyle>
 </math>
+$$\to$$
 
 ? |->
 <math title="|-&gt;">
@@ -32,6 +36,7 @@
     <mo>&RightTeeArrow;</mo>
   </mstyle>
 </math>
+$$\mapsto$$
 
 ? larr
 <math title="larr">
@@ -39,6 +44,7 @@
     <mo>&larr;</mo>
   </mstyle>
 </math>
+$$\leftarrow$$
 
 ? harr
 <math title="harr">
@@ -46,6 +52,7 @@
     <mo>&harr;</mo>
   </mstyle>
 </math>
+$$\leftrightarrow$$
 
 ? rArr
 <math title="rArr">
@@ -53,6 +60,7 @@
     <mo>&rArr;</mo>
   </mstyle>
 </math>
+$$\Rightarrow$$
 
 ? lArr
 <math title="lArr">
@@ -60,6 +68,7 @@
     <mo>&lArr;</mo>
   </mstyle>
 </math>
+$$\Leftarrow$$
 
 ? hArr
 <math title="hArr">
@@ -67,3 +76,4 @@
     <mo>&hArr;</mo>
   </mstyle>
 </math>
+$$\Leftrightarrow$$

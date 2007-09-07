@@ -6,6 +6,7 @@
     </mstyle>
   </mstyle>
 </math>
+$$\bf{A}$$
 
 ? bbb A
 <math title="bbb A">
@@ -13,6 +14,7 @@
     <mstyle mathvariant="double-struck">&#xEF8C;</mstyle>
   </mstyle>
 </math>
+$$\mathds{A}$$
 
 ? cc A
 <math title="cc A">
@@ -20,6 +22,7 @@
     <mstyle mathvariant="script">&#xEF35;</mstyle>
   </mstyle>
 </math>
+$$\cal{A}$$
 
 ? tt A
 <math title="tt A">
@@ -29,6 +32,7 @@
     </mstyle>
   </mstyle>
 </math>
+$$\tt{A}$$
 
 ? fr A
 <math title="fr A">
@@ -36,6 +40,7 @@
     <mstyle mathvariant="fraktur">&#xEF5D;</mstyle>
   </mstyle>
 </math>
+$$\mathfrak{A}$$
 
 ? sf A
 <math title="sf A">
@@ -45,6 +50,7 @@
     </mstyle>
   </mstyle>
 </math>
+$$\sf{A}$$
 
 ? bb{AB3}.bbb(AB].cc(AB).fr{AB}.tt[AB].sf(AB)
 <math title="bb{AB3}.bbb(AB].cc(AB).fr{AB}.tt[AB].sf(AB)">
@@ -84,3 +90,4 @@
     </mstyle>
   </mstyle>
 </math>
+$$\bf{A B 3} . \mathds{A} \mathds{B} . \cal{A} \cal{B} . \mathfrak{A} \mathfrak{B} . \tt{A B} . \sf{A B}$$

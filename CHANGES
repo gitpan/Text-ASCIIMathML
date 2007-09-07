@@ -1,0 +1,16 @@
+CHANGES for vcp - Version CoPy
+
+0.04 Fri Sep 07 10:42:12 CDT 2007
+   - Added ability to output latex using TextToMathMLTree->latex
+   - Added ability to define new commands and symbols on the fly
+   - Added acknowledgements
+   - Fixed typos in POD
+
+0.03 Thu Oct 12 10:33:41 CDT 2006
+   - Fixed POD
+
+0.02 Wed Oct 11 17:32:28 CDT 2006
+   - Fixed some installation issues
+
+0.01 Wed Oct 11 10:52:44 CDT 2006
+   - Initial public release.

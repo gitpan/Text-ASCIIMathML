@@ -4,6 +4,7 @@
     <mo>+</mo>
   </mstyle>
 </math>
+$$+$$
 
 ? -
 <math title="-">
@@ -11,6 +12,7 @@
     <mo>-</mo>
   </mstyle>
 </math>
+$$-$$
 
 ? *
 <math title="*">
@@ -18,6 +20,7 @@
     <mo>&sdot;</mo>
   </mstyle>
 </math>
+$$\cdot$$
 
 ? **
 <math title="**">
@@ -25,6 +28,7 @@
     <mo>&Star;</mo>
   </mstyle>
 </math>
+$$\star$$
 
 ? //
 <math title="//">
@@ -32,6 +36,7 @@
     <mo>/</mo>
   </mstyle>
 </math>
+$$/$$
 
 ? \\ 
 <math title="\\ ">
@@ -39,6 +44,7 @@
     <mo>\</mo>
   </mstyle>
 </math>
+$$\backslash$$
 
 ? xx
 <math title="xx">
@@ -46,6 +52,7 @@
     <mo>&times;</mo>
   </mstyle>
 </math>
+$$\times$$
 
 ? -:
 <math title="-:">
@@ -53,6 +60,7 @@
     <mo>&divide;</mo>
   </mstyle>
 </math>
+$$\div$$
 
 ? @
 <math title="@">
@@ -60,6 +68,7 @@
     <mo>&SmallCircle;</mo>
   </mstyle>
 </math>
+$$\circ$$
 
 ? o+
 <math title="o+">
@@ -67,6 +76,7 @@
     <mo>&oplus;</mo>
   </mstyle>
 </math>
+$$\oplus$$
 
 ? ox
 <math title="ox">
@@ -74,6 +84,7 @@
     <mo>&otimes;</mo>
   </mstyle>
 </math>
+$$\otimes$$
 
 ? o.
 <math title="o.">
@@ -81,6 +92,7 @@
     <mo>&CircleDot;</mo>
   </mstyle>
 </math>
+$$\odot$$
 
 ? sum
 <math title="sum">
@@ -88,6 +100,7 @@
     <mo>&sum;</mo>
   </mstyle>
 </math>
+$$\sum$$
 
 ? prod
 <math title="prod">
@@ -95,6 +108,7 @@
     <mo>&prod;</mo>
   </mstyle>
 </math>
+$$\prod$$
 
 ? ^^
 <math title="^^">
@@ -102,6 +116,7 @@
     <mo>&and;</mo>
   </mstyle>
 </math>
+$$\wedge$$
 
 ? ^^^
 <math title="^^^">
@@ -109,6 +124,7 @@
     <mo>&Wedge;</mo>
   </mstyle>
 </math>
+$$\bigwedge$$
 
 ? vv
 <math title="vv">
@@ -116,6 +132,7 @@
     <mo>&or;</mo>
   </mstyle>
 </math>
+$$\vee$$
 
 ? vvv
 <math title="vvv">
@@ -123,6 +140,7 @@
     <mo>&Vee;</mo>
   </mstyle>
 </math>
+$$\bigvee$$
 
 ? nn
 <math title="nn">
@@ -130,6 +148,7 @@
     <mo>&cap;</mo>
   </mstyle>
 </math>
+$$\cap$$
 
 ? nnn
 <math title="nnn">
@@ -137,6 +156,7 @@
     <mo>&Intersection;</mo>
   </mstyle>
 </math>
+$$\bigcap$$
 
 ? uu
 <math title="uu">
@@ -144,6 +164,7 @@
     <mo>&cup;</mo>
   </mstyle>
 </math>
+$$\cup$$
 
 ? uuu
 <math title="uuu">
@@ -151,3 +172,4 @@
     <mo>&Union;</mo>
   </mstyle>
 </math>
+$$\bigcup$$

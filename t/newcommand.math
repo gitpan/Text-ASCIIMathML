@@ -1,3 +1,13 @@
+? newsymbol{"!le"}{"&#x2270;" "\not\le"} a !le b
+<math title="newsymbol{&quot;!le&quot;}{&quot;&amp;#x2270;&quot; &quot;\not\le&quot;} a !le b">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>a</mi>
+    <mo>&#x2270;</mo>
+    <mi>b</mi>
+  </mstyle>
+</math>
+$$a \not\le b$$
+
 ? newsymbol{"!le"}{"&#x2270;"} a !le b
 <math title="newsymbol{&quot;!le&quot;}{&quot;&amp;#x2270;&quot;} a !le b">
   <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
@@ -39,6 +49,7 @@
     </mrow>
   </mstyle>
 </math>
+$$\frac{d}{d x} f ( x ) = f ' ( x )$$
 
 ? newcommand "FUNKY" ""
 
@@ -56,3 +67,4 @@
     <mi>d</mi>
   </mstyle>
 </math>
+$$\mbox{newcommand} \mbox{NAME} b a d$$

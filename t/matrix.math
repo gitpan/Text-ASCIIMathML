@@ -66,6 +66,15 @@
     </mrow>
   </mstyle>
 </math>
+$$\left( \begin{array}{cc}
+  a & b \\
+  c & d \\
+\end{array}
+ \right)^{- 1} = \frac{1}{a d - b c} \left( \begin{array}{cc}
+  d & - b \\
+  - c & a \\
+\end{array}
+ \right)$$
 
 ? [[a,b],[c,d]]((n),(k))
 <math title="[[a,b],[c,d]]((n),(k))">
@@ -110,6 +119,15 @@
     </mrow>
   </mstyle>
 </math>
+$$\left[ \begin{array}{cc}
+  a & b \\
+  c & d \\
+\end{array}
+ \right] \left( \begin{array}{c}
+  n \\
+  k \\
+\end{array}
+ \right)$$
 
 ? x/x={(1,if x!=0),(text{undefined},if x=0):}
 <math title="x/x={(1,if x!=0),(text{undefined},if x=0):}">
@@ -158,6 +176,11 @@
     </mrow>
   </mstyle>
 </math>
+$$\frac{x}{x} = \left\{ \begin{array}{ll}
+  1 & \mbox{if } x \ne 0 \\
+  \mbox{undefined} & \mbox{if } x = 0 \\
+\end{array}
+ \right.$$
 
 ? (:a,b:) and {:(x,y),(u,v):}
 <math title="(:a,b:) and {:(x,y),(u,v):}">
@@ -196,6 +219,11 @@
     </mrow>
   </mstyle>
 </math>
+$$\langle a , b \rangle \mbox{ and } \begin{array}{ll}
+  x & y \\
+  u & v \\
+\end{array}
+$$
 
 ? {(S_(11),...,S_(1n)),(vdots,ddots,vdots),(S_(m1),...,S_(mn))]
 <math title="{(S_(11),...,S_(1n)),(vdots,ddots,vdots),(S_(m1),...,S_(mn))]">
@@ -264,3 +292,9 @@
     </mrow>
   </mstyle>
 </math>
+$$\left\{ \begin{array}{ccc}
+  S_{11} & \ldots & S_{1 n} \\
+  \vdots & \ddots & \vdots \\
+  S_{m 1} & \ldots & S_{m n} \\
+\end{array}
+ \right]$$

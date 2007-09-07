@@ -4,6 +4,7 @@
     <mi>a</mi>
   </mstyle>
 </math>
+$$a$$
 
 ? 12
 <math title="12">
@@ -11,6 +12,7 @@
     <mn>12</mn>
   </mstyle>
 </math>
+$$12$$
 
 # Distinguish unary minus from subtraction
 ? -4
@@ -20,6 +22,7 @@
     <mn>4</mn>
   </mstyle>
 </math>
+$$- 4$$
 
 ? 12-4
 <math title="12-4">
@@ -27,6 +30,7 @@
     <mn>12</mn><mo>-</mo><mn>4</mn>
   </mstyle>
 </math>
+$$12 - 4$$
 
 ? "a"
 <math title="&quot;a&quot;">
@@ -36,6 +40,7 @@
     </mrow>
   </mstyle>
 </math>
+$$\mbox{a}$$
 
 ? " "
 <math title="&quot; &quot;">
@@ -47,3 +52,4 @@
     </mrow>
   </mstyle>
 </math>
+$$\mbox{ }$$

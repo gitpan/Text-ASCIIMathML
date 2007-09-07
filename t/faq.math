@@ -42,6 +42,11 @@
     <mo>&nbsp;</mo>
   </mstyle>
 </math>
+$$\,\, | A | = \left| \begin{array}{ll}
+  a & b \\
+  c & d \\
+\end{array}
+ \right| = a d - b c \,\, \,$$
 
 ? {:|A|:}={:|{:(a,b),(c,d):}|:}=ad-bc quad\ 
 <math title="{:|A|:}={:|{:(a,b),(c,d):}|:}=ad-bc quad\ ">
@@ -90,4 +95,8 @@
     <mo>&nbsp;</mo>
   </mstyle>
 </math>
-
+$$| A | = \left| \begin{array}{ll}
+  a & b \\
+  c & d \\
+\end{array}
+ \right| = a d - b c \,\, \,$$

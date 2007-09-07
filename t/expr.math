@@ -39,6 +39,7 @@
     </msup>
   </mstyle>
 </math>
+$$\sum_{i = 1}^n i^3 = \left( \frac{n ( n + 1 )}{2} \right)^2$$
 
 ? int_-1^1 sqrt(1-x^2)dx = pi/2
 <math title="int_-1^1 sqrt(1-x^2)dx = pi/2">
@@ -74,6 +75,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\int_{- 1}^1 \sqrt{1 - x^2} d x = \frac{\pi}{2}$$
 
 ? x^2+b/ax+c/a=0
 <math title="x^2+b/ax+c/a=0">
@@ -97,6 +99,7 @@
     <mn>0</mn>
   </mstyle>
 </math>
+$$x^2 + \frac{b}{a} x + \frac{c}{a} = 0$$
 
 ? x^2+b/ax+(b/(2a))^2-(b/(2a))^2+c/a=0
 <math title="x^2+b/ax+(b/(2a))^2-(b/(2a))^2+c/a=0">
@@ -150,6 +153,7 @@
     <mn>0</mn>
   </mstyle>
 </math>
+$$x^2 + \frac{b}{a} x + \left( \frac{b}{2 a} \right)^2 - \left( \frac{b}{2 a} \right)^2 + \frac{c}{a} = 0$$
 
 ? (x+b/(2a))^2=(b^2)/(4a^2)-c/a
 <math title="(x+b/(2a))^2=(b^2)/(4a^2)-c/a">
@@ -193,6 +197,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\left( x + \frac{b}{2 a} \right)^2 = \frac{b^2}{4 a^2} - \frac{c}{a}$$
 
 ? x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)
 <math title="x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)">
@@ -234,6 +239,7 @@
     </msqrt>
   </mstyle>
 </math>
+$$x + \frac{b}{2 a} = \pm \sqrt{\frac{b^2}{4 a^2} - \frac{c}{a}}$$
 
 ? b/(2a)
 <math title="b/(2a)">
@@ -247,6 +253,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{b}{2 a}$$
 
 ? x_(1,2)=(-b+-sqrt(b^2 - 4ac))/(2a)
 <math title="x_(1,2)=(-b+-sqrt(b^2 - 4ac))/(2a)">
@@ -285,6 +292,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$x_{1 , 2} = \frac{- b \pm \sqrt{b^2 - 4 a c}}{2 a}$$
 
 ? f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n
 <math title="f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n">
@@ -344,6 +352,7 @@
     </msup>
   </mstyle>
 </math>
+$$f ( x ) = \sum_{n = 0}^{\infty} \frac{f^{( n )} ( a )}{n !} ( x - a )^n$$
 
 ? (a/b)/(c/d)
 <math title="(a/b)/(c/d)">
@@ -364,6 +373,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{\frac{a}{b}}{\frac{c}{d}}$$
 
 ? a/b/c/d
 <math title="a/b/c/d">
@@ -379,6 +389,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{a}{b} / \frac{c}{d}$$
 
 ? ((a*b))/c
 <math title="((a*b))/c">
@@ -397,6 +408,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{( a \cdot b )}{c}$$
 
 ? sum_(i=1)^n i=(n(n+1))/2
 <math title="sum_(i=1)^n i=(n(n+1))/2">
@@ -429,6 +441,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\sum_{i = 1}^n i = \frac{n ( n + 1 )}{2}$$
 
 ? (x+1)/y
 <math title="(x+1)/y">
@@ -443,3 +456,4 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{x + 1}{y}$$

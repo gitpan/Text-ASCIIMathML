@@ -7,6 +7,7 @@
     </mover>
   </mstyle>
 </math>
+$$\hat{x}$$
 
 ? bar x
 <math title="bar x">
@@ -17,6 +18,7 @@
     </mover>
   </mstyle>
 </math>
+$$\bar{x}$$
 
 ? ul x
 <math title="ul x">
@@ -27,6 +29,7 @@
     </munder>
   </mstyle>
 </math>
+$$\underline{x}$$
 
 ? vec x
 <math title="vec x">
@@ -37,6 +40,7 @@
     </mover>
   </mstyle>
 </math>
+$$\vec{x}$$
 
 ? dot x
 <math title="dot x">
@@ -47,6 +51,7 @@
     </mover>
   </mstyle>
 </math>
+$$\dot{x}$$
 
 ? ddot x
 <math title="ddot x">
@@ -57,3 +62,4 @@
     </mover>
   </mstyle>
 </math>
+$$\ddot{x}$$

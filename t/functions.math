@@ -7,6 +7,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\sin$$
 
 ? cos
 <math title="cos">
@@ -17,6 +18,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\cos$$
 
 ? tan
 <math title="tan">
@@ -27,6 +29,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\tan$$
 
 ? csc
 <math title="csc">
@@ -37,6 +40,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\csc$$
 
 ? sec
 <math title="sec">
@@ -47,6 +51,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\sec$$
 
 ? cot
 <math title="cot">
@@ -57,6 +62,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\cot$$
 
 ? sinh
 <math title="sinh">
@@ -67,6 +73,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\sinh$$
 
 ? cosh
 <math title="cosh">
@@ -77,6 +84,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\cosh$$
 
 ? tanh
 <math title="tanh">
@@ -87,6 +95,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\tanh$$
 
 ? log
 <math title="log">
@@ -97,6 +106,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\log$$
 
 ? ln
 <math title="ln">
@@ -107,6 +117,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\ln$$
 
 ? det
 <math title="det">
@@ -117,6 +128,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\det$$
 
 ? dim
 <math title="dim">
@@ -127,6 +139,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\dim$$
 
 ? lim
 <math title="lim">
@@ -137,6 +150,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\lim$$
 
 ? mod
 <math title="mod">
@@ -147,6 +161,46 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\bmod$$
+
+? gcd(m,n) = a mod b
+<math title="gcd(m,n) = a mod b">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mrow>
+      <mo>gcd</mo>
+      <mrow>
+        <mo>(</mo>
+        <mi>m</mi>
+        <mo>,</mo>
+        <mi>n</mi>
+        <mo>)</mo>
+      </mrow>
+    </mrow>
+    <mo>=</mo>
+    <mi>a</mi>
+    <mo>mod</mo>
+    <mi>b</mi>
+  </mstyle>
+</math>
+$$\gcd ( m , n ) = a \bmod b$$
+
+? x -= y (mod a + b)
+<math title="x -= y (mod a + b)">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>x</mi>
+    <mo>&#x2261;</mo>
+    <mi>y</mi>
+    <mrow>
+      <mo>(</mo>
+      <mo>mod</mo>
+      <mi>a</mi>
+      <mo>+</mo>
+      <mi>b</mi>
+      <mo>)</mo>
+    </mrow>
+  </mstyle>
+</math>
+$$x \equiv y \pmod{a + b}$$
 
 ? gcd
 <math title="gcd">
@@ -157,6 +211,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\gcd$$
 
 ? lcm
 <math title="lcm">
@@ -167,6 +222,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\mbox{lcm}$$
 
 ? min
 <math title="min">
@@ -177,6 +233,7 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\min$$
 
 ? max
 <math title="max">
@@ -187,3 +244,4 @@
 #    </mrow>
   </mstyle>
 </math>
+$$\max$$

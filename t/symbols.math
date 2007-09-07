@@ -4,6 +4,7 @@
     <mo>&int;</mo>
   </mstyle>
 </math>
+$$\int$$
 
 ? oint
 <math title="oint">
@@ -11,6 +12,7 @@
     <mo>&ContourIntegral;</mo>
   </mstyle>
 </math>
+$$\oint$$
 
 ? del
 <math title="del">
@@ -18,6 +20,7 @@
     <mo>&part;</mo>
   </mstyle>
 </math>
+$$\partial$$
 
 ? grad
 <math title="grad">
@@ -25,6 +28,7 @@
     <mo>&nabla;</mo>
   </mstyle>
 </math>
+$$\nabla$$
 
 ? +-
 <math title="+-">
@@ -32,6 +36,7 @@
     <mo>&plusmn;</mo>
   </mstyle>
 </math>
+$$\pm$$
 
 ? O/
 <math title="O/">
@@ -39,6 +44,7 @@
     <mo>&empty;</mo>
   </mstyle>
 </math>
+$$\emptyset$$
 
 ? oo
 <math title="oo">
@@ -46,6 +52,7 @@
     <mo>&infin;</mo>
   </mstyle>
 </math>
+$$\infty$$
 
 ? aleph
 <math title="aleph">
@@ -53,6 +60,7 @@
     <mo>&alefsym;</mo>
   </mstyle>
 </math>
+$$\aleph$$
 
 ? /_
 <math title="/_">
@@ -60,6 +68,7 @@
     <mo>&ang;</mo>
   </mstyle>
 </math>
+$$\angle$$
 
 ? :.
 <math title=":.">
@@ -67,6 +76,7 @@
     <mo>&there4;</mo>
   </mstyle>
 </math>
+$$\therefore$$
 
 ? ...
 <math title="...">
@@ -74,6 +84,7 @@
     <mo>...</mo>
   </mstyle>
 </math>
+$$\ldots$$
 
 ? cdots
 <math title="cdots">
@@ -81,6 +92,7 @@
     <mo>&ctdot;</mo>
   </mstyle>
 </math>
+$$\cdots$$
 
 ? vdots
 <math title="vdots">
@@ -88,6 +100,7 @@
     <mo>&vellip;</mo>
   </mstyle>
 </math>
+$$\vdots$$
 
 ? ddots
 <math title="ddots">
@@ -95,6 +108,7 @@
     <mo>&dtdot;</mo>
   </mstyle>
 </math>
+$$\ddots$$
 
 ? \ 
 <math title="\ ">
@@ -102,6 +116,7 @@
     <mo>&nbsp;</mo>
   </mstyle>
 </math>
+$$\,$$
 
 ? quad
 <math title="quad">
@@ -109,6 +124,7 @@
     <mo>&nbsp;&nbsp;</mo>
   </mstyle>
 </math>
+$$\,\,$$
 
 ? diamond
 <math title="diamond">
@@ -116,6 +132,7 @@
     <mo>&Diamond;</mo>
   </mstyle>
 </math>
+$$\diamond$$
 
 ? square
 <math title="square">
@@ -123,6 +140,7 @@
     <mo>&Square;</mo>
   </mstyle>
 </math>
+$$\square$$
 
 ? |__
 <math title="|__">
@@ -130,6 +148,7 @@
     <mo>&lfloor;</mo>
   </mstyle>
 </math>
+$$\lfloor$$
 
 ? __|
 <math title="__|">
@@ -137,6 +156,7 @@
     <mo>&rfloor;</mo>
   </mstyle>
 </math>
+$$\rfloor$$
 
 ? |~
 <math title="|~">
@@ -144,6 +164,7 @@
     <mo>&lceil;</mo>
   </mstyle>
 </math>
+$$\lceil$$
 
 ? ~|
 <math title="~|">
@@ -151,6 +172,7 @@
     <mo>&rceil;</mo>
   </mstyle>
 </math>
+$$\rceil$$
 
 ? CC
 <math title="CC">
@@ -158,6 +180,7 @@
     <mo>&Copf;</mo>
   </mstyle>
 </math>
+$$\mathds{C}$$
 
 ? NN
 <math title="NN">
@@ -165,6 +188,7 @@
     <mo>&Nopf;</mo>
   </mstyle>
 </math>
+$$\mathds{N}$$
 
 ? QQ
 <math title="QQ">
@@ -172,6 +196,7 @@
     <mo>&Qopf;</mo>
   </mstyle>
 </math>
+$$\mathds{Q}$$
 
 ? RR
 <math title="RR">
@@ -179,6 +204,7 @@
     <mo>&Ropf;</mo>
   </mstyle>
 </math>
+$$\mathds{R}$$
 
 ? ZZ
 <math title="ZZ">
@@ -186,3 +212,4 @@
     <mo>&Zopf;</mo>
   </mstyle>
 </math>
+$$\mathds{Z}$$

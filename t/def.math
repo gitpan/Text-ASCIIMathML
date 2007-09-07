@@ -51,6 +51,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{d}{d x} f ( x ) = \lim_{h \to 0} \frac{f ( x + h ) - f ( x )}{h}$$
 
 ? \frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <math title="\frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}">
@@ -111,6 +112,7 @@
     </mfrac>
   </mstyle>
 </math>
+$$\frac{d}{d x} f ( x ) = \lim_{h \to 0} \frac{f ( x + h ) - f ( x )}{h}$$
 
 ? int_0^1f(x)dx
 <math title="int_0^1f(x)dx">
@@ -136,6 +138,7 @@
     </mrow>
   </mstyle>
 </math>
+$$\int_0^1 f ( x ) d x$$
 
 ? int_0^(pi/2) sinx\ dx=1
 <math title="int_0^(pi/2) sinx\ dx=1">
@@ -165,3 +168,4 @@
     <mn>1</mn>
   </mstyle>
 </math>
+$$\int_0^{\frac{\pi}{2}} \sin x \, d x = 1$$
