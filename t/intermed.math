@@ -50,7 +50,7 @@ $$e^{i \pi} = - 1$$
     <mi>c</mi>
   </mstyle>
 </math>
-$$a ! \le b ! \geq c$$
+$$a ! \leq b ! \geq c$$
 
 ? a!=0
 <math title="a!=0">

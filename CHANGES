@@ -1,5 +1,9 @@
 CHANGES for vcp - Version CoPy
 
+0.05 Mon Sep 10 10:57:30 CDT 2007
+   - Fixed latex output so it doesn't depend upon the order perl
+     returns hash elements using keys operator
+
 0.04 Fri Sep 07 10:42:12 CDT 2007
    - Added ability to output latex using TextToMathMLTree->latex
    - Added ability to define new commands and symbols on the fly

@@ -1,12 +1,12 @@
-? newsymbol{"!le"}{"&#x2270;" "\not\le"} a !le b
-<math title="newsymbol{&quot;!le&quot;}{&quot;&amp;#x2270;&quot; &quot;\not\le&quot;} a !le b">
+? newsymbol{"!le"}{"&#x2270;" "\not\leq"} a !le b
+<math title="newsymbol{&quot;!le&quot;}{&quot;&amp;#x2270;&quot; &quot;\not\leq&quot;} a !le b">
   <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
     <mi>a</mi>
     <mo>&#x2270;</mo>
     <mi>b</mi>
   </mstyle>
 </math>
-$$a \not\le b$$
+$$a \not\leq b$$
 
 ? newsymbol{"!le"}{"&#x2270;"} a !le b
 <math title="newsymbol{&quot;!le&quot;}{&quot;&amp;#x2270;&quot;} a !le b">

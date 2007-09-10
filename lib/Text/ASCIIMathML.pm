@@ -450,7 +450,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.4';
+our $VERSION = '0.5';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -636,10 +636,10 @@ my %AMSymbol = (
 #"lt" => { tag=>"mo", output=>"<",      tex=>'', ttype=>"CONST" },
 "lt" => { tag=>"mo", output=>"&lt;",      tex=>'', ttype=>"CONST" },
 "<=" => { tag=>"mo", output=>"&#x2264;", tex=>"le", ttype=>"CONST" },
-"lt=" => { tag=>"mo", output=>"&#x2264;", tex=>"leq", ttype=>"CONST" },
+"lt=" => { tag=>"mo", output=>"&#x2264;", tex=>"leq", ttype=>"CONST", latex=>1 },
 ">=" => { tag=>"mo", output=>"&#x2265;", tex=>"ge", ttype=>"CONST" },
-"geq" => { tag=>"mo", output=>"&#x2265;", tex=>'', ttype=>"CONST" },
-"-<" => { tag=>"mo", output=>"&#x227A;", tex=>"prec", ttype=>"CONST" },
+"geq" => { tag=>"mo", output=>"&#x2265;", tex=>'', ttype=>"CONST", latex=>1 },
+"-<" => { tag=>"mo", output=>"&#x227A;", tex=>"prec", ttype=>"CONST", latex=>1 },
 "-lt" => { tag=>"mo", output=>"&#x227A;", tex=>'', ttype=>"CONST" },
 ">-" => { tag=>"mo", output=>"&#x227B;", tex=>"succ", ttype=>"CONST" },
 "in" => { tag=>"mo", output=>"&#x2208;", tex=>'', ttype=>"CONST" },
@@ -752,13 +752,13 @@ my %AMSymbol = (
 "uarr" => { tag=>"mo", output=>"&#x2191;", tex=>"uparrow", ttype=>"CONST" },
 "darr" => { tag=>"mo", output=>"&#x2193;", tex=>"downarrow", ttype=>"CONST" },
 "rarr" => { tag=>"mo", output=>"&#x2192;", tex=>"rightarrow", ttype=>"CONST" },
-"->" => { tag=>"mo", output=>"&#x2192;", tex=>"to", ttype=>"CONST" },
+"->" => { tag=>"mo", output=>"&#x2192;", tex=>"to", ttype=>"CONST", latex=>1 },
 "|->" => { tag=>"mo", output=>"&#x21A6;", tex=>"mapsto", ttype=>"CONST" },
 "larr" => { tag=>"mo", output=>"&#x2190;", tex=>"leftarrow", ttype=>"CONST" },
 "harr" => { tag=>"mo", output=>"&#x2194;", tex=>"leftrightarrow", ttype=>"CONST" },
-"rArr" => { tag=>"mo", output=>"&#x21D2;", tex=>"Rightarrow", ttype=>"CONST" },
+"rArr" => { tag=>"mo", output=>"&#x21D2;", tex=>"Rightarrow", ttype=>"CONST", latex=>1 },
 "lArr" => { tag=>"mo", output=>"&#x21D0;", tex=>"Leftarrow", ttype=>"CONST" },
-"hArr" => { tag=>"mo", output=>"&#x21D4;", tex=>"Leftrightarrow", ttype=>"CONST" },
+"hArr" => { tag=>"mo", output=>"&#x21D4;", tex=>"Leftrightarrow", ttype=>"CONST", latex=>1 },
 
 # commands with argument
 
@@ -1390,11 +1390,14 @@ sub latex : method {
     if (! %LatexSym) {
 	# Build the entity to latex symbol translator
 	my $amsymbol = Text::ASCIIMathML::_get_amsymbol_();
-	%LatexSym = map(($amsymbol->{$_}{output},
-			 "\\" . ($amsymbol->{$_}{tex} || $_)),
-			grep(defined $amsymbol->{$_}{output} &&
-			     $amsymbol->{$_}{output} =~ /&\#x.*;/,
-			     keys %$amsymbol));
+	foreach my $sym (keys %$amsymbol) {
+	    next unless (defined $amsymbol->{$sym}{output} &&
+			 $amsymbol->{$sym}{output} =~ /&\#x.*;/);
+	    my ($output, $tex) = map $amsymbol->{$sym}{$_}, qw(output tex);
+	    next if defined $LatexSym{$output} && ! $amsymbol->{$sym}{latex};
+	    $tex = $sym if $tex eq '';
+	    $LatexSym{$output} = "\\$tex";
+	}
 	my %math_font = (bbb      => 'mathds',
 			 mathbb   => 'mathds',
 			 cc       => 'cal',
@@ -1410,11 +1413,13 @@ sub latex : method {
 	}
 	# Post-process protected symbols
 	$LatexSym{$_} =~ s/^\\\\/\\/ foreach keys %LatexSym;
-	%LatexMover = ('^'         => '\hat',
-		       '\overline' => '\overline',
-		       '\to'       => '\vec',
-		       '.'         => '\dot',
-		       '..'        => '\ddot'
+	%LatexMover = ('^'           => '\hat',
+		       '\overline'   => '\overline',
+		       '\to'         => '\vec',
+		       '\vec'        => '\vec',
+		       '\rightarrow' => '\vec',
+		       '.'           => '\dot',
+		       '..'          => '\ddot',
 		       );
 	%LatexFont = (bold            => '\bf',
 		      'double-struck' => '\mathds',
