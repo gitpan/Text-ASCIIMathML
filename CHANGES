@@ -1,5 +1,9 @@
 CHANGES for vcp - Version CoPy
 
+0.06 Wed Nov 07 16:34:40 CST 2007
+   - Changed the order so that symbols defined with newsymbol take
+     precedence over predefined symbols
+
 0.05 Mon Sep 10 10:57:30 CDT 2007
    - Fixed latex output so it doesn't depend upon the order perl
      returns hash elements using keys operator

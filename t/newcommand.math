@@ -17,6 +17,14 @@ $$a \not\leq b$$
   </mstyle>
 </math>
 
+? newsymbol{"(R)"}{"&#x00AE;" "\textregistered"} (R)
+<math title="newsymbol{&quot;(R)&quot;}{&quot;&amp;#x00AE;&quot; &quot;\textregistered&quot;} (R)">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mo>&#x00AE;</mo>
+  </mstyle>
+</math>
+$$\textregistered$$
+
 ? newcommand "DDX" "{:d/dx:}" DDXf(x) = f'(x)
 <math title="newcommand &quot;DDX&quot; &quot;{:d/dx:}&quot; DDXf(x) = f'(x)">
   <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">

@@ -450,7 +450,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.5';
+our $VERSION = '0.6';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -796,10 +796,10 @@ sub _getSymbol_ : method {
     for ($str) {
         /^(\d+(\.\d+)?)/ || /^(\.\d+)/
 	    and return $1, {tag=>'mn', output=>$1, ttype=>'CONST'};
-	/^($Ident_RE)/o and
-	    return $1,$AMTexSym{$1} ? $AMSymbol{$AMTexSym{$1}} : $AMSymbol{$1};
 	$self->{Definition_RE} && /^($self->{Definition_RE})/ and
 	    return $1, $self->{Definitions}{$1};
+	/^($Ident_RE)/o and
+	    return $1,$AMTexSym{$1} ? $AMSymbol{$AMTexSym{$1}} : $AMSymbol{$1};
         /^([A-Za-z])/ and
 	    return $1, {tag=>'mi', output=>$1, ttype=>'CONST'};
         /^(.)/ and 
