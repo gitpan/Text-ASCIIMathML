@@ -450,7 +450,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.6';
+our $VERSION = '0.7';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -657,6 +657,8 @@ my %AMSymbol = (
 "<" => { tag=>"mo", output=>"&lt;",      tex=>'', ttype=>"CONST" },
 "gt" => { tag=>"mo", output=>"&gt;",      tex=>'', ttype=>"CONST" },
 ">" => { tag=>"mo", output=>"&gt;",      tex=>'', ttype=>"CONST" },
+"\\!" => { tag=>"", output=>'',   tex=>'', ttype=>"NOP" },
+
 
 # logical symbols
 "and" => { tag=>"mtext", output=>"and", tex=>'', ttype=>"SPACE" },
@@ -1204,6 +1206,10 @@ sub _parseSexpr : method {
 	# the "|" is a \mid
 	return $node, $str;
     }
+    if ($ttype eq 'NOP') {
+	$str = _removeCharsAndBlanks($str, length $input);
+	return $self->_parseSexpr($str);
+    }
     $str = _removeCharsAndBlanks($str, length $input);
     return $self->_createMmlNode
 	($symbol->{tag}, # it's a constant
@@ -1230,7 +1236,7 @@ sub _removeBrackets {
 sub _removeCharsAndBlanks {
     my ($str, $n) = @_;
     my $st = substr($str, 
-		    substr($str, $n) =~ /^\\[^\\ ,]/ ? $n+1 : $n);
+		    substr($str, $n) =~ /^\\[^\\ ,!]/ ? $n+1 : $n);
     $st =~ s/^[\x00-\x20]+//;
     return $st;
 }

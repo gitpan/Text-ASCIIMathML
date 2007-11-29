@@ -16,3 +16,64 @@
   </mstyle>
 </math>
 $$\sin^{- 1} ( x )$$
+
+? O(n \log n / \! \log\log n)
+<math title="O(n \log n / \! \log\log n)">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>O</mi>
+    <mrow>
+      <mo>(</mo>
+      <mi>n</mi>
+      <mfrac>
+        <mrow>
+          <mo>log</mo>
+          <mi>n</mi>
+        </mrow>
+        <mrow>
+          <mo>log</mo>
+          <mrow>
+            <mo>log</mo>
+            <mi>n</mi>
+          </mrow>
+        </mrow>
+      </mfrac>
+      <mo>)</mo>
+    </mrow>
+  </mstyle>
+</math>
+$$O \left( n \frac{\log n}{\log \log n} \right)$$
+
+? O(n \log n / \log\log n)
+<math title="O(n \log n / \log\log n)">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>O</mi>
+    <mrow>
+      <mo>(</mo>
+      <mi>n</mi>
+      <mfrac>
+        <mrow>
+          <mo>log</mo>
+          <mi>n</mi>
+        </mrow>
+        <mrow>
+          <mo>log</mo>
+          <mrow>
+            <mo>log</mo>
+            <mi>n</mi>
+          </mrow>
+        </mrow>
+      </mfrac>
+      <mo>)</mo>
+    </mrow>
+  </mstyle>
+</math>
+$$O \left( n \frac{\log n}{\log \log n} \right)$$
+
+? 7!
+<math title="7!">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mn>7</mn>
+    <mo>!</mo>
+  </mstyle>
+</math>
+$$7 !$$
