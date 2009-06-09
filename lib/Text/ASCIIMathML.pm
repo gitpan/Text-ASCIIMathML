@@ -118,6 +118,8 @@ symbols. The other expressions are converted as follows:
  S1^S2	  ->	<msup>S1 S2'</msup>
  S1_S2^S3 ->	<msubsup>S1 S2' S3'</msubsup> or
 		 <munderover>S1 S2' S3'</munderover> (in some cases)
+ S1^S2_S3 ->	<msubsup>S1 S3' S2'</msubsup> or
+		 <munderover>S1 S3' S2'</munderover> (in some cases)
 
 =back
 
@@ -416,6 +418,36 @@ be in one of the forms "#rgb" or "#rrggbb", or an html-color-name, or
 the keyword "transparent".
 
 
+=head1 METHODS
+
+=head2 C<Text::ASCIIMathML>
+
+=head3 C<TextToMathML($text, [$math_attr], [$mstyle_attr])>
+
+Converts C<$text> to a MathML string. If the optional C<$math_attr>
+argument is provided, it should be a reference to a hash of
+attribute/value pairs for the C< <math> > node.  If the optional
+C<$mstyle_attr> argument is provided, it should be a reference to a
+hash of attribute/value pairs for the C< <mstyle> > node.
+
+=head3 C<TextToMathMLTree($text, [$math_attr], [$mstyle_attr])>
+
+Like C<TextToMathMLTree> except that instead of returning a string, it
+returns a C<Text::ASCIIMathML::Node> representing the parsed MathML
+structure.  
+
+=head2 C<Text::ASCIIMathML::Node>
+
+=head3 C<text>
+
+Returns a MathML string representing the parsed MathML structure
+encoded by the C<Text::ASCIIMathML::Node>.
+
+=head3 C<latex>
+
+Returns a LaTeX string representing the parsed MathML structure
+encoded by the C<Text::ASCIIMathML::Node>. 
+
 =head1 BUGS AND SUGGESTIONS
 
 If you find bugs, think of anything that could improve Text::ASCIIMathML
@@ -450,7 +482,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.7';
+our $VERSION = '0.8';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -487,14 +519,17 @@ sub TextToMathMLTree : method {
     my ($self, $expr, $mathAttr, $mstyleAttr) = @_;
     $expr = '' unless defined $expr;
     my $mstyle = $self->_createElementMathML('mstyle');
-    $mstyle->setAttribute(@$mstyleAttr) if $mstyleAttr;
+    $mstyle->setAttribute
+	(ref $mstyleAttr eq 'ARRAY' ? @$mstyleAttr : %$mstyleAttr)
+	if $mstyleAttr;
     $self->{nestingDepth} = 0;
     $expr =~ s/^\s+//;
     $mstyle->appendChild(($self->_parseExpr($expr, 0))[0]);
     return unless $mstyle->childNodes > 0;
     my $math = $self->_createMmlNode('math', $mstyle);
     $expr =~ s/\n\s*//g;
-    $math->setAttribute(@$mathAttr) if $mathAttr;
+    $math->setAttribute(ref $mathAttr eq 'ARRAY' ? @$mathAttr : %$mathAttr)
+	if $mathAttr;
     
     return $math;
 }
@@ -982,6 +1017,26 @@ sub _parseIexpr : method {
 	    else {
 		$node = $self->_createMmlNode
 		    ($underover ? 'munder' : 'msub', $node);
+		$node->appendChild($result[0]);
+	    }
+	}
+	elsif ($input eq '^') {
+	    my ($in2, $sym2) = $self->_getSymbol($str);
+	    my $underover = $sym1->{ttype} eq 'UNDEROVER';
+	    if ($in2 eq '_') {
+		$str = _removeCharsAndBlanks($str, length $in2);
+		my @res2 = $self->_parseSexpr($str);
+		_removeBrackets($res2[0]);
+		$str = $res2[1];
+		$node = $self->_createMmlNode
+		    ($underover ? 'munderover' : 'msubsup', $node);
+		$node->appendChild($res2[0]);
+		$node->appendChild($result[0]);
+		$node = $self->_createMmlNode('mrow',$node); # so sum does not stretch
+	    }
+	    else {
+		$node = $self->_createMmlNode
+		    ($underover ? 'mover' : 'msup', $node);
 		$node->appendChild($result[0]);
 	    }
 	}

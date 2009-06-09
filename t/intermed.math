@@ -105,6 +105,30 @@ $$a x^2 + b x + c = 0$$
 </math>
 $$x^2 + y_1 + z_{12}^{34}$$
 
+? x^2+y_1+z^34_12
+<math title="x^2+y_1+z^34_12">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <msup>
+      <mi>x</mi>
+      <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <msub>
+      <mi>y</mi>
+      <mn>1</mn>
+    </msub>
+    <mo>+</mo>
+    <mrow>
+      <msubsup>
+        <mi>z</mi>
+        <mn>12</mn>
+        <mn>34</mn>
+      </msubsup>
+    </mrow>
+  </mstyle>
+</math>
+$$x^2 + y_1 + z_{12}^{34}$$
+
 ? a//b
 <math title="a//b">
   <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
