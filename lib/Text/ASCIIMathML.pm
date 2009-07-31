@@ -291,6 +291,7 @@ min max
  O/	  Null set					&empty;
  oo       Infinity					&infin;
  aleph	  Hebrew letter aleph				&alefsym;
+ &        Ampersand					&amp;
  /_	  Angle						&ang;
  :.	  Therefore					&there4;
  ...	  Ellipsis					...
@@ -482,7 +483,7 @@ Perl README file.
 use strict;
 use warnings;
 
-our $VERSION = '0.8';
+our $VERSION = '0.81';
 
 # Creates a new Text::ASCIIMathML parser object
 sub new {
@@ -741,6 +742,7 @@ my %AMSymbol = (
 "..." => { tag=>"mo", output=>"...",    tex=>"ldots", ttype=>"CONST" },
 ":." => { tag=>"mo", output=>"&#x2234;",  tex=>"therefore", ttype=>"CONST" },
 "/_" => { tag=>"mo", output=>"&#x2220;",  tex=>"angle", ttype=>"CONST" },
+"&"  => { tag=>"mo", output=>"&amp;",     tex=>'\&',    ttype=>"CONST" },
 "\\ " => { tag=>"mo", output=>"&#x00A0;", tex=>'\,', ttype=>"CONST" },
 "quad" => { tag=>"mo", output=>"&#x00A0;&#x00A0;", tex=>'', ttype=>"CONST" },
 "qquad" => { tag=>"mo", output=>"&#x00A0;&#x00A0;&#x00A0;&#x00A0;", tex=>'', ttype=>"CONST" },
@@ -1495,6 +1497,7 @@ sub latex : method {
 		    "\\"       => '\backslash',
 		    '&lt;'     => '<',
 		    '&gt;'     => '>',
+		    '&amp;'    => '\&',
 		    '...'      => '\ldots',
 		    );
     }
@@ -1504,6 +1507,7 @@ sub latex : method {
 	$text =~ s/(&\#x.*?;)/
 	    defined $parser->{Latex}{$1} ? $parser->{Latex}{$1} :
 	    defined $LatexSym{$1} ? $LatexSym{$1} : $1/eg;
+	$text =~ s/([\#])/\\$1/;
 	return $text;
     }
     my $tag = $self->{tag};

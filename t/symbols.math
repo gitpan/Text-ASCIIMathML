@@ -213,3 +213,12 @@ $$\mathds{R}$$
   </mstyle>
 </math>
 $$\mathds{Z}$$
+? a & b
+<math title="a &amp; b">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mi>a</mi>
+    <mo>&amp;</mo>
+    <mi>b</mi>
+  </mstyle>
+</math>
+$$a \& b$$

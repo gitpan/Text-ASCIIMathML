@@ -77,3 +77,14 @@ $$O \left( n \frac{\log n}{\log \log n} \right)$$
   </mstyle>
 </math>
 $$7 !$$
+
+? "# of pigeons"
+<math title="&quot;# of pigeons&quot;">
+  <mstyle mathcolor="red" displaystyle="true" fontfamily="serif">
+    <mrow>
+      <mtext># of pigeons</mtext>
+    </mrow>
+  </mstyle>
+</math>
+$$\mbox{\# of pigeons}$$
+
